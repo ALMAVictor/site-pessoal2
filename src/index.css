@@ -46,6 +46,13 @@ body {
   }
 }
 
+/* Image optimization */
+img {
+  content-visibility: auto;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
 /* Aggressive mobile optimizations - disable heavy animations */
 @media (max-width: 768px) {
   /* Disable backdrop blur on mobile - very expensive */
@@ -59,6 +66,17 @@ body {
     filter: blur(0) !important;
     opacity: 0.3 !important;
   }
+  
+  /* Disable expensive transforms on mobile */
+  [class*="group-hover:scale"] {
+    transform: none !important;
+  }
+  
+  /* Optimize images on mobile */
+  img {
+    will-change: auto;
+    transform: translateZ(0);
+  }
 }
 
 /* GPU acceleration for animated elements (desktop only) */
@@ -66,6 +84,15 @@ body {
   [data-framer-component] {
     will-change: transform;
     transform: translateZ(0);
+  }
+  
+  /* Optimize images on desktop */
+  img {
+    will-change: auto;
+  }
+  
+  img:hover {
+    will-change: transform;
   }
 }
 

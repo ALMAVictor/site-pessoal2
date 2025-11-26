@@ -77,7 +77,7 @@ const BlogGrid = ({ selected = 'all' }) => {
                 allowFullScreen
               />
             ) : (
-              <img src={item.image} alt={item.title} className="w-full h-40 object-cover" />
+              <img src={item.image} alt={item.title} className="w-full h-40 object-cover" loading="lazy" decoding="async" />
             )}
             <div className="p-6 flex-1 flex flex-col">
               <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>

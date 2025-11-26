@@ -53,57 +53,37 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-20 md:py-32 bg-gradient-to-br from-slate-50 via-blue-50/50 to-indigo-50/40 relative overflow-hidden">
-      {/* Premium Decorative Background Elements */}
+      {/* Premium Decorative Background Elements - Optimized */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Large gradient orb - top right */}
+        {/* Large gradient orb - top right - Static on mobile, animated on desktop */}
         <motion.div
-          className="absolute -top-32 -right-32 w-[800px] h-[800px] bg-gradient-to-bl from-blue-300/30 via-indigo-300/20 to-purple-300/15 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.25, 0.35, 0.25],
-            x: [0, 30, 0],
-            y: [0, 20, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-        {/* Medium gradient orb - bottom left */}
-        <motion.div
-          className="absolute -bottom-32 -left-32 w-[700px] h-[700px] bg-gradient-to-tr from-indigo-300/25 via-purple-300/20 to-pink-300/15 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
+          className="absolute -top-32 -right-32 w-[600px] md:w-[800px] h-[600px] md:h-[800px] bg-gradient-to-bl from-blue-300/20 md:from-blue-300/30 via-indigo-300/15 md:via-indigo-300/20 to-purple-300/10 md:to-purple-300/15 rounded-full blur-3xl"
+          animate={typeof window !== 'undefined' && window.innerWidth > 768 ? {
+            scale: [1, 1.1, 1],
             opacity: [0.2, 0.3, 0.2],
-            x: [0, -20, 0],
-            y: [0, -15, 0],
-          }}
+          } : {}}
           transition={{
-            duration: 14,
+            duration: 15,
             repeat: Infinity,
             ease: 'easeInOut',
-            delay: 1.5,
           }}
         />
-        {/* Small accent orb - center top */}
+        {/* Medium gradient orb - bottom left - Static on mobile */}
         <motion.div
-          className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-gradient-to-r from-cyan-300/20 via-blue-300/20 to-indigo-300/20 rounded-full blur-2xl"
-          animate={{
-            scale: [1, 1.25, 1],
+          className="absolute -bottom-32 -left-32 w-[500px] md:w-[700px] h-[500px] md:h-[700px] bg-gradient-to-tr from-indigo-300/15 md:from-indigo-300/25 via-purple-300/12 md:via-purple-300/20 to-pink-300/10 md:to-pink-300/15 rounded-full blur-3xl"
+          animate={typeof window !== 'undefined' && window.innerWidth > 768 ? {
+            scale: [1, 1.15, 1],
             opacity: [0.15, 0.25, 0.15],
-          }}
+          } : {}}
           transition={{
-            duration: 8,
+            duration: 18,
             repeat: Infinity,
             ease: 'easeInOut',
-            delay: 3,
+            delay: 2,
           }}
         />
         {/* Subtle grid pattern overlay - more refined */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(99,102,241,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(99,102,241,0.03)_1px,transparent_1px)] bg-[size:32px_32px] opacity-50" />
-        {/* Radial gradient overlay for depth */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,transparent_50%,rgba(59,130,246,0.05)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(99,102,241,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(99,102,241,0.02)_1px,transparent_1px)] bg-[size:32px_32px] opacity-30 md:opacity-50" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
@@ -223,8 +203,10 @@ const Projects = () => {
                           <motion.img
                             src={featuredProjects[currentIndex].image}
                             alt={`${featuredProjects[currentIndex].title} project cover`}
-                            className="w-full h-48 md:h-64 object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                            whileHover={{ scale: 1.1 }}
+                            className="w-full h-48 md:h-64 object-cover md:group-hover:scale-110 transition-transform duration-300 md:duration-500 ease-out"
+                            loading="lazy"
+                            decoding="async"
+                            whileHover={typeof window !== 'undefined' && window.innerWidth > 768 ? { scale: 1.1 } : {}}
                           />
                         )}
                         {/* Enhanced gradient overlay */}

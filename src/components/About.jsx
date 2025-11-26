@@ -44,6 +44,8 @@ const About = () => {
                 src="/victor1.JPG"
                 alt="Victor Mazoni - Professional Photo"
                 className="w-56 h-80 md:w-72 md:h-96 rounded-3xl object-cover shadow-2xl border-4 border-white/50"
+                loading="lazy"
+                decoding="async"
                 whileHover={typeof window !== 'undefined' && window.innerWidth > 768 ? { scale: 1.02, rotate: 1 } : {}}
                 transition={typeof window !== 'undefined' && window.innerWidth > 768 ? { type: 'spring', stiffness: 200, damping: 15 } : {}}
               />
