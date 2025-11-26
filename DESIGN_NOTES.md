@@ -144,5 +144,42 @@ Este arquivo documenta todas as decisões de design, padrões estabelecidos e mu
 
 ---
 
-*Última atualização: Seção Featured Projects - Bordas com alta saturação e contraste*
+## 📄 Página Projects (ProjectsPage)
+
+### Background
+- **Fundo**: `bg-slate-900/95 backdrop-blur-xl`
+- **Overlay**: `from-blue-900/20 via-slate-900/95 to-indigo-900/20`
+- **Orbs**: Mesmos padrões da seção Featured Projects
+
+### Títulos
+- **"Featured"**: Gradiente `from-white via-blue-100 to-white` com `drop-shadow-lg`
+- **"Projects"**: Gradiente `from-blue-300 via-indigo-300 to-purple-300` com `drop-shadow-lg`
+- **Descrição**: `text-slate-300`
+
+### Filtros
+- **Categoria Ativa**: `bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600` com `border-2 border-blue-400/50`
+- **Categoria Inativa**: `bg-slate-800/80` com `border-2 border-slate-700/60`
+- **Market Ativo**: `bg-gradient-to-r from-green-500 via-emerald-500 to-green-600` com `border-2 border-green-400/50`
+- **Market Inativo**: `bg-slate-800/80` com `border-2 border-slate-700/60`
+
+### Cards dos Projetos
+- **Fundo**: `bg-slate-800/90 md:bg-slate-800/95`
+- **Bordas**: `border-2 border-slate-700/80 md:border-blue-400/50` com hover `hover:border-blue-300/80`
+- **Efeitos**: Mesmos glow e ring effects da seção Featured Projects
+- **Título**: `text-white` com `drop-shadow-lg`
+- **Descrição**: `text-slate-300`
+- **Tech Badges**: Gradientes azul/indigo/roxo escuros
+- **View Details**: Gradiente `from-blue-400 via-indigo-400 to-purple-400`
+
+### Modal
+- **Fundo**: `bg-slate-800/95 backdrop-blur-xl`
+- **Borda**: `border-2 border-blue-400/30`
+- **Stats Cards**: Fundos escuros com gradientes e bordas coloridas
+- **Textos**: Branco e slate-300 para contraste
+- **Tech Stack**: Badges com gradientes escuros
+- **CTAs**: Botões com gradientes azul/indigo/roxo
+
+---
+
+*Última atualização: Página Projects - Design premium escuro aplicado com bordas saturadas*
 
