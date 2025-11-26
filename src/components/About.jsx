@@ -11,9 +11,9 @@ const About = () => {
 
   return (
     <section id="about" className="py-24 bg-gradient-to-b from-white via-slate-50 to-white relative overflow-hidden">
-      {/* Decorative background elements - reduced blur for mobile */}
-      <div className="absolute top-0 right-0 w-64 md:w-96 h-64 md:h-96 bg-gradient-to-br from-blue-100/20 md:from-blue-100/30 to-indigo-100/20 md:to-indigo-100/30 rounded-full blur-2xl md:blur-3xl -z-0" />
-      <div className="absolute bottom-0 left-0 w-64 md:w-96 h-64 md:h-96 bg-gradient-to-tr from-purple-100/20 md:from-purple-100/30 to-pink-100/20 md:to-pink-100/30 rounded-full blur-2xl md:blur-3xl -z-0" />
+      {/* Decorative background elements - hidden on mobile for performance */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-100/30 to-indigo-100/30 rounded-full blur-3xl -z-0 hidden md:block" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-purple-100/30 to-pink-100/30 rounded-full blur-3xl -z-0 hidden md:block" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
@@ -23,7 +23,7 @@ const About = () => {
           animate={isInView ? 'visible' : 'hidden'}
           variants={{
             visible: {
-              transition: { staggerChildren: 0.1 }, // Reduced from 0.2
+              transition: { staggerChildren: 0.15 },
             },
           }}
         >
@@ -31,11 +31,11 @@ const About = () => {
           <motion.div
             className="flex justify-center md:justify-start"
             variants={{
-              hidden: { opacity: 0, x: -30 },
+              hidden: { opacity: 0, x: -40 },
               visible: {
                 opacity: 1,
                 x: 0,
-                transition: { type: 'tween', duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
+                transition: { type: 'spring', stiffness: 80, damping: 15 },
               },
             }}
           >
@@ -44,9 +44,8 @@ const About = () => {
                 src="/victor1.JPG"
                 alt="Victor Mazoni - Professional Photo"
                 className="w-64 h-64 md:w-80 md:h-80 rounded-3xl object-cover shadow-2xl border-4 border-white/50"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: 'tween', duration: 0.2 }}
-                style={{ willChange: 'transform' }}
+                whileHover={typeof window !== 'undefined' && window.innerWidth > 768 ? { scale: 1.02, rotate: 1 } : {}}
+                transition={typeof window !== 'undefined' && window.innerWidth > 768 ? { type: 'spring', stiffness: 200, damping: 15 } : {}}
               />
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-blue-400/20 to-indigo-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>

@@ -13,9 +13,9 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-24 bg-gradient-to-b from-slate-50 via-blue-50/50 to-slate-50 relative overflow-hidden">
-      {/* Decorative background - reduced blur for mobile */}
-      <div className="absolute top-1/2 left-0 w-64 md:w-96 h-64 md:h-96 bg-gradient-to-r from-blue-200/15 md:from-blue-200/20 to-indigo-200/15 md:to-indigo-200/20 rounded-full blur-2xl md:blur-3xl -z-0" />
-      <div className="absolute bottom-0 right-0 w-64 md:w-96 h-64 md:h-96 bg-gradient-to-l from-purple-200/15 md:from-purple-200/20 to-pink-200/15 md:to-pink-200/20 rounded-full blur-2xl md:blur-3xl -z-0" />
+      {/* Decorative background - hidden on mobile for performance */}
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-gradient-to-r from-blue-200/20 to-indigo-200/20 rounded-full blur-3xl -z-0 hidden md:block" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-l from-purple-200/20 to-pink-200/20 rounded-full blur-3xl -z-0 hidden md:block" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
@@ -23,7 +23,7 @@ const Skills = () => {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
           variants={{
-            visible: { transition: { staggerChildren: 0.05 } }, // Reduced for faster animation
+            visible: { transition: { staggerChildren: 0.08 } },
           }}
         >
           <motion.h2
@@ -55,16 +55,18 @@ const Skills = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {/* Pillar 1: Technical Arsenal */}
             <motion.div
-              className="bg-white/80 backdrop-blur-md rounded-3xl shadow-xl p-8 md:p-10 border border-white/50 hover:shadow-2xl transition-all"
+              className="bg-white/80 md:backdrop-blur-md rounded-3xl shadow-xl p-8 md:p-10 border border-white/50 hover:shadow-2xl transition-all"
               variants={{
-                hidden: { opacity: 0, x: -50 },
+                hidden: { opacity: 0, x: typeof window !== 'undefined' && window.innerWidth <= 768 ? -10 : -40 },
                 visible: {
                   opacity: 1,
                   x: 0,
-                  transition: { type: 'spring', stiffness: 100 },
+                  transition: typeof window !== 'undefined' && window.innerWidth <= 768
+                    ? { type: 'tween', duration: 0.3 }
+                    : { type: 'spring', stiffness: 80, damping: 15 },
                 },
               }}
-              whileHover={{ y: -5 }}
+              whileHover={typeof window !== 'undefined' && window.innerWidth > 768 ? { y: -5, scale: 1.01 } : {}}
             >
               <h3 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-8 leading-tight bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                 Technical Arsenal
@@ -84,9 +86,9 @@ const Skills = () => {
                     <motion.li
                       key={item.tech}
                       className="flex gap-3 text-slate-700"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={isInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ delay: 0.3 + idx * 0.1 }}
+                      initial={{ opacity: 0 }}
+                      animate={isInView ? { opacity: 1 } : {}}
+                      transition={{ delay: 0.1 + idx * 0.03, type: 'tween', duration: 0.2 }}
                     >
                       <CheckIcon />
                       <span>
@@ -109,9 +111,9 @@ const Skills = () => {
                     <motion.li
                       key={item.tech}
                       className="flex gap-3 text-slate-700"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={isInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ delay: 0.8 + idx * 0.1 }}
+                      initial={{ opacity: 0 }}
+                      animate={isInView ? { opacity: 1 } : {}}
+                      transition={{ delay: 0.2 + idx * 0.03, type: 'tween', duration: 0.2 }}
                     >
                       <CheckIcon />
                       <span>
@@ -137,9 +139,9 @@ const Skills = () => {
                     <motion.li
                       key={item.tech}
                       className="flex gap-3 text-slate-700"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={isInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ delay: 1.1 + idx * 0.1 }}
+                      initial={{ opacity: 0 }}
+                      animate={isInView ? { opacity: 1 } : {}}
+                      transition={{ delay: 0.3 + idx * 0.03, type: 'tween', duration: 0.2 }}
                     >
                       <CheckIcon />
                       <span>
@@ -153,16 +155,18 @@ const Skills = () => {
 
             {/* Pillar 2: Strategic Arsenal */}
             <motion.div
-              className="bg-white/80 backdrop-blur-md rounded-3xl shadow-xl p-8 md:p-10 border border-white/50 hover:shadow-2xl transition-all"
+              className="bg-white/80 md:backdrop-blur-md rounded-3xl shadow-xl p-8 md:p-10 border border-white/50 hover:shadow-2xl transition-all"
               variants={{
-                hidden: { opacity: 0, x: 50 },
+                hidden: { opacity: 0, x: typeof window !== 'undefined' && window.innerWidth <= 768 ? 10 : 40 },
                 visible: {
                   opacity: 1,
                   x: 0,
-                  transition: { type: 'spring', stiffness: 100 },
+                  transition: typeof window !== 'undefined' && window.innerWidth <= 768
+                    ? { type: 'tween', duration: 0.3 }
+                    : { type: 'spring', stiffness: 80, damping: 15 },
                 },
               }}
-              whileHover={{ y: -5 }}
+              whileHover={typeof window !== 'undefined' && window.innerWidth > 768 ? { y: -5, scale: 1.01 } : {}}
             >
               <h3 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-8 leading-tight bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                 Strategic Arsenal
@@ -180,9 +184,9 @@ const Skills = () => {
                     <motion.li
                       key={item.tech}
                       className="flex gap-3 text-slate-700"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={isInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ delay: 0.3 + idx * 0.1 }}
+                      initial={{ opacity: 0 }}
+                      animate={isInView ? { opacity: 1 } : {}}
+                      transition={{ delay: 0.1 + idx * 0.03, type: 'tween', duration: 0.2 }}
                     >
                       <CheckIcon />
                       <span>
@@ -204,9 +208,9 @@ const Skills = () => {
                     <motion.li
                       key={item.tech}
                       className="flex gap-3 text-slate-700"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={isInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ delay: 0.5 + idx * 0.1 }}
+                      initial={{ opacity: 0 }}
+                      animate={isInView ? { opacity: 1 } : {}}
+                      transition={{ delay: 0.15 + idx * 0.03, type: 'tween', duration: 0.2 }}
                     >
                       <CheckIcon />
                       <span>
@@ -229,9 +233,9 @@ const Skills = () => {
                     <motion.li
                       key={item.tech}
                       className="flex gap-3 text-slate-700"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={isInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ delay: 0.7 + idx * 0.1 }}
+                      initial={{ opacity: 0 }}
+                      animate={isInView ? { opacity: 1 } : {}}
+                      transition={{ delay: 0.2 + idx * 0.03, type: 'tween', duration: 0.2 }}
                     >
                       <CheckIcon />
                       <span>

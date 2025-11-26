@@ -46,10 +46,27 @@ body {
   }
 }
 
-/* GPU acceleration for animated elements */
-[data-framer-component] {
-  will-change: transform;
-  transform: translateZ(0);
+/* Aggressive mobile optimizations - disable heavy animations */
+@media (max-width: 768px) {
+  /* Disable backdrop blur on mobile - very expensive */
+  [class*="backdrop-blur"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* Reduce blur effects on decorative elements */
+  .absolute[class*="blur"] {
+    filter: blur(0) !important;
+    opacity: 0.3 !important;
+  }
+}
+
+/* GPU acceleration for animated elements (desktop only) */
+@media (min-width: 769px) {
+  [data-framer-component] {
+    will-change: transform;
+    transform: translateZ(0);
+  }
 }
 
 h1 {

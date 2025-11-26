@@ -1,40 +1,49 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
 
 // Hero: First fold of the site. Communicates the main value proposition
 // quickly with strong typographic hierarchy and CTAs consistent with visual identity.
-// Optimized variants for smooth mobile performance
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08, // Reduced from 0.15 for faster animation
-      delayChildren: 0.05, // Reduced from 0.1
-    },
-  },
-};
+const Hero = () => {
+  const [isMobile, setIsMobile] = useState(false);
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 }, // Reduced from 30 for smoother motion
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: 'tween', // Changed from spring for better mobile performance
-      duration: 0.4,
-      ease: [0.25, 0.1, 0.25, 1], // Smooth easing
-    },
-  },
-};
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
-const Hero = () => (
-  <section id="hero" className="pt-32 pb-24 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-950 text-center relative overflow-hidden">
-    {/* Animated background gradient orbs - simplified for mobile performance */}
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Reduced blur and simplified animation for mobile */}
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: isMobile ? 0.03 : 0.12,
+        delayChildren: isMobile ? 0 : 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: isMobile ? 10 : 25 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: isMobile
+        ? { type: 'tween', duration: 0.3, ease: 'easeOut' }
+        : { type: 'spring', stiffness: 80, damping: 15, mass: 0.8 },
+    },
+  };
+
+  return (
+    <section id="hero" className="pt-32 pb-24 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-950 text-center relative overflow-hidden">
+    {/* Animated background gradient orbs - disabled on mobile for performance */}
+    <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block">
       <motion.div
-        className="absolute top-1/4 left-1/4 w-64 md:w-96 h-64 md:h-96 bg-blue-500/15 md:bg-blue-500/20 rounded-full blur-2xl md:blur-3xl"
+        className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
         animate={{
           x: [0, 30, 0],
           y: [0, 20, 0],
@@ -44,10 +53,9 @@ const Hero = () => (
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        style={{ willChange: 'transform' }}
       />
       <motion.div
-        className="absolute bottom-1/4 right-1/4 w-64 md:w-96 h-64 md:h-96 bg-indigo-500/15 md:bg-indigo-500/20 rounded-full blur-2xl md:blur-3xl"
+        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl"
         animate={{
           x: [0, -30, 0],
           y: [0, -20, 0],
@@ -57,7 +65,6 @@ const Hero = () => (
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        style={{ willChange: 'transform' }}
       />
     </div>
 
@@ -76,9 +83,8 @@ const Hero = () => (
           className="w-36 h-36 rounded-full border-4 border-white/20 shadow-2xl object-cover object-center"
           src="/victor1.JPG"
           alt="Victor Mazoni"
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: 'tween', duration: 0.2 }}
-          style={{ willChange: 'transform' }}
+          whileHover={isMobile ? {} : { scale: 1.05, rotate: 1 }}
+          transition={isMobile ? {} : { type: 'spring', stiffness: 200, damping: 15 }}
         />
         <div className="absolute inset-0 w-36 h-36 rounded-full bg-gradient-to-tr from-blue-400/30 to-indigo-400/30 blur-xl -z-10" />
       </motion.div>
@@ -121,24 +127,26 @@ const Hero = () => (
         <motion.a
           href="#contact"
           className="group relative px-8 py-4 bg-white/10 md:backdrop-blur-md border border-white/20 text-white rounded-full font-semibold overflow-hidden"
-          whileHover={{ scale: 1.03 }}
+          whileHover={isMobile ? {} : { scale: 1.05, borderColor: 'rgba(255,255,255,0.4)' }}
           whileTap={{ scale: 0.98 }}
-          transition={{ type: 'tween', duration: 0.2 }}
+          transition={isMobile ? {} : { type: 'spring', stiffness: 300, damping: 20 }}
         >
           <span className="relative z-10">Let's Talk</span>
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-indigo-500/20"
-            initial={{ x: '-100%' }}
-            whileHover={{ x: 0 }}
-            transition={{ duration: 0.25 }}
-          />
+          {!isMobile && (
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-indigo-500/20"
+              initial={{ x: '-100%' }}
+              whileHover={{ x: 0 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+            />
+          )}
         </motion.a>
         <motion.a
           href="#projects"
           className="px-8 py-4 border-2 border-white/30 rounded-full font-semibold text-white md:backdrop-blur-sm hover:bg-white/10 transition-all"
-          whileHover={{ scale: 1.03 }}
+          whileHover={isMobile ? {} : { scale: 1.05, borderColor: 'rgba(255,255,255,0.5)' }}
           whileTap={{ scale: 0.98 }}
-          transition={{ type: 'tween', duration: 0.2 }}
+          transition={isMobile ? {} : { type: 'spring', stiffness: 300, damping: 20 }}
         >
           View Work
         </motion.a>
@@ -159,11 +167,14 @@ const Hero = () => (
             href={href}
             aria-label={label}
             className="p-3 rounded-full bg-white/5 md:backdrop-blur-sm border border-white/10 text-white/70 hover:text-white hover:bg-white/10 transition-all"
-            whileHover={{ scale: 1.1 }}
+            whileHover={isMobile ? {} : { scale: 1.15, rotate: 5, borderColor: 'rgba(255,255,255,0.3)' }}
             whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 + index * 0.05, type: 'tween', duration: 0.3 }}
+            transition={isMobile 
+              ? { delay: 0.3 + index * 0.05, type: 'tween', duration: 0.2 }
+              : { delay: 0.8 + index * 0.1, type: 'spring', stiffness: 200, damping: 15 }
+            }
           >
             <Icon size={20} />
           </motion.a>
@@ -171,22 +182,25 @@ const Hero = () => (
       </motion.div>
     </motion.div>
 
-    {/* Scroll indicator - simplified animation */}
+    {/* Scroll indicator - simplified on mobile */}
     <motion.div
       className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ delay: 0.8, duration: 0.5 }}
+      transition={{ delay: isMobile ? 0.5 : 1.2, duration: 0.4 }}
     >
       <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-2">
-        <motion.div
-          className="w-1.5 h-1.5 bg-white/50 rounded-full"
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
-        />
+        {!isMobile && (
+          <motion.div
+            className="w-1.5 h-1.5 bg-white/50 rounded-full"
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        )}
       </div>
     </motion.div>
   </section>
-);
+  );
+};
 
 export default Hero;
