@@ -9,13 +9,13 @@ const CheckIcon = () => (
 
 const Skills = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, margin: '-50px' });
 
   return (
     <section id="skills" className="py-24 bg-gradient-to-b from-slate-50 via-blue-50/50 to-slate-50 relative overflow-hidden">
-      {/* Decorative background */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-gradient-to-r from-blue-200/20 to-indigo-200/20 rounded-full blur-3xl -z-0" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-l from-purple-200/20 to-pink-200/20 rounded-full blur-3xl -z-0" />
+      {/* Decorative background - reduced blur for mobile */}
+      <div className="absolute top-1/2 left-0 w-64 md:w-96 h-64 md:h-96 bg-gradient-to-r from-blue-200/15 md:from-blue-200/20 to-indigo-200/15 md:to-indigo-200/20 rounded-full blur-2xl md:blur-3xl -z-0" />
+      <div className="absolute bottom-0 right-0 w-64 md:w-96 h-64 md:h-96 bg-gradient-to-l from-purple-200/15 md:from-purple-200/20 to-pink-200/15 md:to-pink-200/20 rounded-full blur-2xl md:blur-3xl -z-0" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
@@ -23,7 +23,7 @@ const Skills = () => {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
           variants={{
-            visible: { transition: { staggerChildren: 0.1 } },
+            visible: { transition: { staggerChildren: 0.05 } }, // Reduced for faster animation
           }}
         >
           <motion.h2

@@ -12,7 +12,7 @@ export const projectsData = [
     duration: '6 weeks',
     techStack: ['React', 'PWA', 'Tailwind CSS', 'Google Gemini AI', 'SPA Architecture', 'Mercado Livre API'],
     results: '1.7% increase in checkout rate through CRO optimization',
-    image: 'https://placehold.co/1200x675/png?text=Gamers+Code',
+    image: '/gamerscode1.png',
     videoId: '', // YouTube video ID (if available)
     demo: 'https://gamerscode.com.br',
     github: '#',

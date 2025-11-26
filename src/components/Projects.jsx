@@ -23,7 +23,7 @@ const featuredProjects = projectsData.filter(p => p.featured).slice(0, 2);
 
 const Projects = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, margin: '-50px' });
 
   return (
     <section id="projects" className="py-24 bg-gradient-to-b from-white via-slate-50 to-white relative overflow-hidden">
@@ -38,17 +38,17 @@ const Projects = () => {
         >
           <motion.h2
             className="text-5xl md:text-6xl font-black mb-4 text-slate-900 text-center tracking-tight"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
           >
             Featured Projects
           </motion.h2>
           <motion.p
             className="text-center text-slate-600 mb-8 text-lg"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.4, delay: 0.05, ease: [0.25, 0.1, 0.25, 1] }}
           >
             Hybrid projects combining Growth Engineering, Behavioral Psychology, and Front-End Development
           </motion.p>
@@ -75,11 +75,12 @@ const Projects = () => {
                 className="block"
               >
                 <motion.div
-                  className="group bg-white/80 backdrop-blur-md rounded-3xl shadow-xl overflow-hidden flex flex-col border border-white/50 hover:shadow-2xl transition-all cursor-pointer"
-                  initial={{ opacity: 0, y: 50 }}
+                  className="group bg-white/80 md:backdrop-blur-md rounded-3xl shadow-xl overflow-hidden flex flex-col border border-white/50 hover:shadow-2xl transition-all cursor-pointer"
+                  initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.2 + idx * 0.15, type: 'spring', stiffness: 100 }}
-                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ delay: 0.1 + idx * 0.08, type: 'tween', duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                  whileHover={{ y: -5, scale: 1.01 }}
+                  style={{ willChange: 'transform' }}
                 >
                   {/* Media: video loop if available, otherwise image */}
                   <div className="relative overflow-hidden">
