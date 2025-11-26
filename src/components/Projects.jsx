@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaExternalLinkAlt, FaGithub, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 import { projectsData, getMarketInfo } from '../data/projectsData';
 
 // Market Badge Component
@@ -52,9 +52,59 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-16 md:py-24 bg-gradient-to-b from-white via-slate-50 to-white relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-100/30 to-indigo-100/30 rounded-full blur-3xl -z-0" />
+    <section id="projects" className="py-20 md:py-32 bg-gradient-to-br from-slate-50 via-blue-50/50 to-indigo-50/40 relative overflow-hidden">
+      {/* Premium Decorative Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Large gradient orb - top right */}
+        <motion.div
+          className="absolute -top-32 -right-32 w-[800px] h-[800px] bg-gradient-to-bl from-blue-300/30 via-indigo-300/20 to-purple-300/15 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.15, 1],
+            opacity: [0.25, 0.35, 0.25],
+            x: [0, 30, 0],
+            y: [0, 20, 0],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+        {/* Medium gradient orb - bottom left */}
+        <motion.div
+          className="absolute -bottom-32 -left-32 w-[700px] h-[700px] bg-gradient-to-tr from-indigo-300/25 via-purple-300/20 to-pink-300/15 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.3, 0.2],
+            x: [0, -20, 0],
+            y: [0, -15, 0],
+          }}
+          transition={{
+            duration: 14,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: 1.5,
+          }}
+        />
+        {/* Small accent orb - center top */}
+        <motion.div
+          className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-gradient-to-r from-cyan-300/20 via-blue-300/20 to-indigo-300/20 rounded-full blur-2xl"
+          animate={{
+            scale: [1, 1.25, 1],
+            opacity: [0.15, 0.25, 0.15],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: 3,
+          }}
+        />
+        {/* Subtle grid pattern overlay - more refined */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(99,102,241,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(99,102,241,0.03)_1px,transparent_1px)] bg-[size:32px_32px] opacity-50" />
+        {/* Radial gradient overlay for depth */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,transparent_50%,rgba(59,130,246,0.05)_100%)]" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
         <motion.div
@@ -63,15 +113,20 @@ const Projects = () => {
           animate={isInView ? 'visible' : 'hidden'}
         >
           <motion.h2
-            className="text-3xl md:text-5xl lg:text-6xl font-black mb-3 md:mb-4 text-slate-900 text-center tracking-tight px-2"
+            className="text-4xl md:text-5xl lg:text-7xl font-black mb-4 md:mb-5 text-slate-900 text-center tracking-tight px-2"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ type: 'spring', stiffness: 80, damping: 15 }}
           >
-            Featured Projects
+            <span className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent">
+              Featured
+            </span>{' '}
+            <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 bg-clip-text text-transparent">
+              Projects
+            </span>
           </motion.h2>
           <motion.p
-            className="text-center text-slate-600 mb-6 md:mb-8 text-sm md:text-base lg:text-lg px-2"
+            className="text-center text-slate-600 mb-8 md:mb-12 text-base md:text-lg lg:text-xl px-2 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ type: 'spring', stiffness: 80, damping: 15, delay: 0.1 }}
@@ -86,11 +141,18 @@ const Projects = () => {
           >
             <motion.a
               href="/projects"
-              className="inline-flex items-center gap-2 px-5 py-2.5 md:px-6 md:py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full text-sm md:text-base font-semibold shadow-lg hover:shadow-xl transition-all"
+              className="relative inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-blue-700 via-indigo-700 to-blue-700 text-white rounded-full text-sm md:text-base font-bold shadow-2xl shadow-blue-600/40 hover:shadow-2xl hover:shadow-blue-600/60 transition-all border border-blue-500/30 hover:border-blue-400/50 overflow-hidden group"
               whileHover={{ scale: 1.05, x: 3 }}
               whileTap={{ scale: 0.98 }}
             >
-              View All Projects →
+              {/* Shine effect on hover */}
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+              <span className="relative z-10 flex items-center gap-2 text-white drop-shadow-lg">
+                View All Projects
+                <svg className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
             </motion.a>
           </motion.div>
           {/* Premium Carousel - Compact with Swipe */}
@@ -144,62 +206,73 @@ const Projects = () => {
                     }}
                   >
                     <motion.div
-                      className="group bg-white/95 md:bg-white/80 md:backdrop-blur-md rounded-2xl md:rounded-3xl shadow-2xl md:shadow-xl overflow-hidden flex flex-col border border-slate-200/50 md:border-white/50 hover:shadow-2xl transition-all cursor-pointer"
-                      whileHover={typeof window !== 'undefined' && window.innerWidth > 768 ? { y: -8, scale: 1.02 } : {}}
+                      className="group relative bg-white/95 md:bg-white/90 md:backdrop-blur-xl rounded-2xl md:rounded-3xl shadow-2xl md:shadow-2xl overflow-hidden flex flex-col border border-slate-200/60 md:border-white/70 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] transition-all cursor-pointer"
+                      whileHover={typeof window !== 'undefined' && window.innerWidth > 768 ? { y: -12, scale: 1.02 } : {}}
                     >
+                      {/* Premium shine effect on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/0 to-blue-50/0 group-hover:from-white/20 group-hover:via-transparent group-hover:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl md:rounded-3xl" />
+                      {/* Subtle border glow */}
+                      <div className="absolute inset-0 rounded-2xl md:rounded-3xl bg-gradient-to-r from-blue-500/0 via-indigo-500/0 to-purple-500/0 group-hover:from-blue-500/10 group-hover:via-indigo-500/10 group-hover:to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none blur-xl" />
                       {/* Media: video loop if available, otherwise image */}
-                      <div className="relative overflow-hidden">
+                      <div className="relative overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200">
                         {featuredProjects[currentIndex].videoId ? (
-                          <div className="w-full h-44 md:h-56 bg-gradient-to-br from-slate-900 to-blue-900 flex items-center justify-center">
-                            <div className="text-white text-4xl">▶</div>
+                          <div className="w-full h-48 md:h-64 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 flex items-center justify-center">
+                            <div className="text-white text-5xl">▶</div>
                           </div>
                         ) : (
                           <motion.img
                             src={featuredProjects[currentIndex].image}
                             alt={`${featuredProjects[currentIndex].title} project cover`}
-                            className="w-full h-44 md:h-56 object-cover group-hover:scale-110 transition-transform duration-500"
+                            className="w-full h-48 md:h-64 object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                             whileHover={{ scale: 1.1 }}
                           />
                         )}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        {/* Enhanced gradient overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        {/* Subtle shine effect */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/0 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         {featuredProjects[currentIndex].featured && (
-                          <div className="absolute top-3 right-3 md:top-4 md:right-4 px-2.5 py-1 md:px-3 md:py-1 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full text-white text-[10px] md:text-xs font-bold shadow-lg">
+                          <motion.div
+                            className="absolute top-4 right-4 px-3 py-1.5 md:px-4 md:py-2 bg-gradient-to-r from-yellow-400 via-orange-400 to-orange-500 rounded-full text-white text-xs md:text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20"
+                            whileHover={{ scale: 1.1 }}
+                            transition={{ type: 'spring', stiffness: 400 }}
+                          >
                             ⭐ Featured
-                          </div>
+                          </motion.div>
                         )}
                       </div>
-                      <div className="p-5 md:p-6 lg:p-8 flex flex-col flex-1">
-                        <div className="mb-2.5 md:mb-2">
+                      <div className="p-6 md:p-7 lg:p-10 flex flex-col flex-1 relative z-10">
+                        <div className="mb-3 md:mb-3">
                           {featuredProjects[currentIndex].market && <MarketBadge market={featuredProjects[currentIndex].market} />}
                         </div>
-                        <h3 className="text-lg md:text-xl lg:text-2xl font-extrabold text-slate-900 mb-2 md:mb-3 tracking-tight leading-tight">{featuredProjects[currentIndex].title}</h3>
-                        <p className="text-slate-600 mb-3 md:mb-4 leading-relaxed flex-1 text-sm md:text-base line-clamp-3">{featuredProjects[currentIndex].description}</p>
+                        <h3 className="text-xl md:text-2xl lg:text-3xl font-extrabold text-slate-900 mb-3 md:mb-4 tracking-tight leading-tight bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">{featuredProjects[currentIndex].title}</h3>
+                        <p className="text-slate-600 mb-4 md:mb-5 leading-relaxed flex-1 text-sm md:text-base lg:text-lg line-clamp-3">{featuredProjects[currentIndex].description}</p>
                         {featuredProjects[currentIndex].results && (
-                          <div className="mb-3 md:mb-4 p-2.5 md:p-3 rounded-lg md:rounded-xl bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200">
-                            <p className="text-[11px] md:text-xs lg:text-sm font-bold text-green-800 leading-tight">
-                              📈 Result: {featuredProjects[currentIndex].results}
+                          <div className="mb-4 md:mb-5 p-3 md:p-4 rounded-xl md:rounded-2xl bg-gradient-to-r from-green-50 via-emerald-50 to-green-50 border border-green-200/60 shadow-sm">
+                            <p className="text-xs md:text-sm lg:text-base font-bold text-green-800 leading-tight">
+                              📈 <span className="text-green-700">Result:</span> {featuredProjects[currentIndex].results}
                             </p>
                           </div>
                         )}
-                        <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-6">
+                        <div className="flex flex-wrap gap-2 md:gap-2.5 mb-5 md:mb-7">
                           {featuredProjects[currentIndex].techStack.slice(0, 3).map(tech => (
                             <span
                               key={tech}
-                              className="border border-slate-200 text-slate-700 rounded-full text-[10px] md:text-xs px-2.5 py-1 md:px-3 md:py-1.5 font-semibold bg-slate-50/90 md:bg-slate-50/80 backdrop-blur-sm"
+                              className="border border-slate-200/80 text-slate-700 rounded-full text-xs md:text-sm px-3 py-1.5 md:px-4 md:py-2 font-semibold bg-slate-50/95 md:bg-white/60 backdrop-blur-sm shadow-sm hover:shadow-md hover:border-blue-300/50 transition-all"
                             >
                               {tech}
                             </span>
                           ))}
                           {featuredProjects[currentIndex].techStack.length > 3 && (
-                            <span className="text-[10px] md:text-xs text-slate-500 font-semibold self-center">
+                            <span className="text-xs md:text-sm text-slate-500 font-semibold self-center px-2">
                               +{featuredProjects[currentIndex].techStack.length - 3} more
                             </span>
                           )}
                         </div>
-                        <div className="mt-auto pt-3 md:pt-4 border-t border-slate-100">
-                          <span className="text-xs md:text-sm font-semibold text-blue-600 group-hover:text-blue-700 transition-colors inline-flex items-center gap-1">
+                        <div className="mt-auto pt-4 md:pt-5 border-t border-slate-200/60">
+                          <span className="text-sm md:text-base font-semibold text-blue-600 group-hover:text-blue-700 transition-colors inline-flex items-center gap-2 group-hover:gap-3">
                             View Details
-                            <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                             </svg>
                           </span>
@@ -211,43 +284,20 @@ const Projects = () => {
               </AnimatePresence>
             </motion.div>
 
-            {/* Navigation Arrows - Hidden on mobile, visible on desktop */}
-            {featuredProjects.length > 1 && (
-              <>
-                <motion.button
-                  onClick={prevSlide}
-                  className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/90 backdrop-blur-md border border-slate-200 shadow-xl hover:shadow-2xl transition-all text-slate-700 hover:text-blue-600 hover:bg-white"
-                  whileHover={{ scale: 1.1, x: -2 }}
-                  whileTap={{ scale: 0.9 }}
-                  aria-label="Previous project"
-                >
-                  <FaChevronLeft size={20} />
-                </motion.button>
-                <motion.button
-                  onClick={nextSlide}
-                  className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/90 backdrop-blur-md border border-slate-200 shadow-xl hover:shadow-2xl transition-all text-slate-700 hover:text-blue-600 hover:bg-white"
-                  whileHover={{ scale: 1.1, x: 2 }}
-                  whileTap={{ scale: 0.9 }}
-                  aria-label="Next project"
-                >
-                  <FaChevronRight size={20} />
-                </motion.button>
-              </>
-            )}
 
-            {/* Dots Indicator - Premium Mobile Design */}
+            {/* Dots Indicator - Premium Design */}
             {featuredProjects.length > 1 && (
-              <div className="flex justify-center items-center gap-2.5 md:gap-2 mt-6 md:mt-8">
+              <div className="flex justify-center items-center gap-3 md:gap-2.5 mt-8 md:mt-10">
                 {featuredProjects.map((_, index) => (
                   <motion.button
                     key={index}
                     onClick={() => goToSlide(index)}
                     className={`rounded-full transition-all ${
                       index === currentIndex
-                        ? 'h-2.5 md:h-2 w-10 md:w-8 bg-gradient-to-r from-blue-600 to-indigo-600 shadow-lg shadow-blue-500/30'
-                        : 'h-2.5 md:h-2 w-2.5 md:w-2 bg-slate-300 hover:bg-slate-400'
+                        ? 'h-3 md:h-2.5 w-12 md:w-10 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 shadow-xl shadow-blue-500/40 ring-2 ring-blue-200/50'
+                        : 'h-3 md:h-2.5 w-3 md:w-2.5 bg-slate-300/80 hover:bg-slate-400/80 hover:scale-110'
                     }`}
-                    whileHover={{ scale: 1.2 }}
+                    whileHover={{ scale: 1.15 }}
                     whileTap={{ scale: 0.9 }}
                     aria-label={`Go to slide ${index + 1}`}
                   />
