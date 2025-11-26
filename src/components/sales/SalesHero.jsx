@@ -89,7 +89,9 @@ const SalesHero = () => (
       </p>
       <div className="flex justify-center">
         <motion.a
-          href="#contact"
+          href="https://www.linkedin.com/in/victor-mazoni-2596171b7/"
+          target="_blank"
+          rel="noopener noreferrer"
           className="relative w-fit px-16 py-7 font-black text-xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-600 shadow-2xl text-white rounded-full overflow-hidden focus:outline-none focus:ring-4 focus:ring-yellow-200 hover:brightness-110 group"
           whileHover={{ scale: 1.08, rotate: '-2deg' }}
           whileTap={{ scale: 0.98, rotate: '2deg' }}

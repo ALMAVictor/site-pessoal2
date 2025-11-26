@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => (
   <footer className="mt-auto bg-gradient-to-b from-slate-900 via-blue-900 to-slate-950 text-white/90 relative overflow-hidden">
@@ -58,29 +58,21 @@ const Footer = () => (
         <div className="font-bold text-white mb-4">Contact</div>
         <ul className="space-y-3 text-white/80">
           <li>
-            <a href="#contact" className="hover:text-white transition-colors flex items-center gap-2 group">
+            <a
+              href="https://www.linkedin.com/in/victor-mazoni-2596171b7/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors flex items-center gap-2 group"
+            >
+              <span className="w-1.5 h-1.5 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+              <FaLinkedin className="text-blue-400" size={16} />
+              Connect on LinkedIn →
+            </a>
+          </li>
+          <li>
+            <a href="/contact" className="hover:text-white transition-colors flex items-center gap-2 group">
               <span className="w-1.5 h-1.5 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
               Start Project →
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://wa.me/5516991023690"
-              target="_blank"
-              rel="noopener"
-              className="hover:text-white transition-colors flex items-center gap-2 group"
-            >
-              <FaWhatsapp className="text-green-400" size={16} />
-              WhatsApp
-            </a>
-          </li>
-          <li>
-            <a
-              href="mailto:victormazoni0@gmail.com"
-              className="hover:text-white transition-colors flex items-center gap-2 group"
-            >
-              <FaEnvelope className="text-blue-400" size={16} />
-              victormazoni0@gmail.com
             </a>
           </li>
         </ul>

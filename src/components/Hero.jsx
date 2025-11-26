@@ -183,7 +183,9 @@ const Hero = () => {
         className="flex justify-center gap-5 mt-12"
       >
         <motion.a
-          href="#contact"
+          href="https://www.linkedin.com/in/victor-mazoni-2596171b7/"
+          target="_blank"
+          rel="noopener noreferrer"
           className="group relative px-8 py-4 bg-white/10 md:backdrop-blur-md border border-white/20 text-white rounded-full font-semibold overflow-hidden"
           whileHover={isMobile ? {} : { scale: 1.05, borderColor: 'rgba(255,255,255,0.4)' }}
           whileTap={{ scale: 0.98 }}

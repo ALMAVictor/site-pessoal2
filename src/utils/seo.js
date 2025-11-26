@@ -13,6 +13,11 @@
  * @param {string} seoData.type - Tipo de conteúdo (article, website, etc.)
  */
 export const setSEOMetaTags = (seoData) => {
+  // Check if we're in browser environment
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return;
+  }
+
   const {
     title = 'Victor Mazoni | Hybrid Growth Engineer',
     description = 'Hybrid Growth Engineer combining Consumer Behavioral Psychology, Branding, and Copywriting with Front-End Engineering.',
@@ -49,6 +54,8 @@ export const setSEOMetaTags = (seoData) => {
  * Define uma meta tag
  */
 const setMetaTag = (name, content, attribute = 'name') => {
+  if (typeof document === 'undefined') return;
+  
   let tag = document.querySelector(`meta[${attribute}="${name}"]`);
   
   if (!tag) {
@@ -64,6 +71,8 @@ const setMetaTag = (name, content, attribute = 'name') => {
  * Define a URL canônica
  */
 const setCanonicalUrl = (url) => {
+  if (typeof document === 'undefined') return;
+  
   let canonical = document.querySelector('link[rel="canonical"]');
   
   if (!canonical) {
@@ -103,6 +112,8 @@ export const generateArticleSchema = (article) => {
  * Adiciona schema markup ao head
  */
 export const addSchemaMarkup = (schema) => {
+  if (typeof document === 'undefined') return;
+  
   const script = document.createElement('script');
   script.type = 'application/ld+json';
   script.textContent = JSON.stringify(schema);

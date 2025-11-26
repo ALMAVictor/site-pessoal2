@@ -129,7 +129,9 @@ const ServicesResults = () => {
             }}
           >
             <motion.a
-              href="#contact"
+              href="https://www.linkedin.com/in/victor-mazoni-2596171b7/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="relative inline-flex items-center justify-center gap-2 px-10 py-5 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 text-white rounded-full text-lg font-bold shadow-2xl shadow-blue-600/40 hover:shadow-blue-600/60 transition-all border border-blue-400/30 hover:border-blue-300/50 overflow-hidden group"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}

@@ -13,6 +13,7 @@ import Sales from './pages/Sales';
 import Services from './pages/Services';
 import AboutPage from './pages/AboutPage';
 import SkillsPage from './pages/SkillsPage';
+import ContactPage from './pages/ContactPage';
 import { useEffect } from 'react';
 import { setSEOMetaTags } from './utils/seo';
 
@@ -22,7 +23,7 @@ function Layout({ children, seoTitle, seoDescription, seoImage, seoUrl }) {
       title: seoTitle,
       description: seoDescription,
       image: seoImage,
-      url: seoUrl || window.location.href,
+      url: seoUrl || (typeof window !== 'undefined' ? window.location.href : ''),
     });
   }, [seoTitle, seoDescription, seoImage, seoUrl]);
   
@@ -87,6 +88,17 @@ function App() {
       <Route
         path="/skills"
         element={<Layout seoTitle="Skills & Expertise | Victor Mazoni - Technical & Strategic Arsenal"><SkillsPage /></Layout>}
+      />
+      <Route
+        path="/contact"
+        element={
+          <Layout
+            seoTitle="Contact Victor Mazoni | Let's Build Your Growth Engine"
+            seoDescription="Get in touch to discuss your project. Whether it's high-converting landing pages, customer acquisition ecosystems, or CRO optimization—I deliver end-to-end solutions."
+          >
+            <ContactPage />
+          </Layout>
+        }
       />
       {/* Fallback */}
       <Route path="*" element={<Layout seoTitle="Página não encontrada | Victor Mazoni"><div className="h-64 flex flex-col items-center justify-center text-blue-700"><h1 className="text-3xl font-black">404</h1><p>Página não encontrada!</p></div></Layout>} />
