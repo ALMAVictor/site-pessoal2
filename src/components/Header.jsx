@@ -97,8 +97,8 @@ const Header = () => {
               <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-slate-900/98 to-indigo-900/20 pointer-events-none" />
               
               {/* Header with close button */}
-              <div className="flex items-center justify-between p-6 border-b border-blue-500/20 relative z-10">
-                <h2 className="text-xl font-black bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
+              <div className="flex items-center justify-between p-6 border-b border-blue-500/30 relative z-10">
+                <h2 className="text-xl font-black bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300 bg-clip-text text-transparent drop-shadow-lg">
                   Menu
                 </h2>
                 <motion.button
@@ -119,14 +119,14 @@ const Header = () => {
                       key={link.href}
                       href={link.href}
                       onClick={() => setMenuOpen(false)}
-                      className="block w-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-6 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-blue-500/50 transition-all relative overflow-hidden group"
+                      className="block w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 rounded-xl font-extrabold text-base shadow-xl hover:shadow-blue-500/50 transition-all relative overflow-hidden group border border-blue-300/40"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.08, type: 'spring', stiffness: 200 }}
                       whileHover={{ scale: 1.02, x: 4 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <span className="relative z-10">{link.label}</span>
+                      <span className="relative z-10 text-white drop-shadow-lg font-extrabold">{link.label}</span>
                       <motion.div
                         className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-400 opacity-0 group-hover:opacity-100"
                         transition={{ duration: 0.3 }}
@@ -137,14 +137,14 @@ const Header = () => {
                       key={link.href}
                       href={link.href}
                       onClick={() => setMenuOpen(false)}
-                      className="block w-full px-6 py-4 rounded-xl font-semibold text-slate-300 hover:text-white transition-all border border-transparent hover:border-white/10 hover:bg-white/5 relative group"
+                      className="block w-full px-6 py-4 rounded-xl font-semibold text-slate-100 hover:text-white transition-all border border-transparent hover:border-white/20 hover:bg-white/10 relative group"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.08, type: 'spring', stiffness: 200 }}
                       whileHover={{ x: 4 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <span className="relative z-10">{link.label}</span>
+                      <span className="relative z-10 drop-shadow-sm">{link.label}</span>
                     </motion.a>
                   ))}
                 </div>
