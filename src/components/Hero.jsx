@@ -79,48 +79,51 @@ const Hero = () => {
         variants={itemVariants}
         className="mb-8 flex justify-center relative"
       >
-        {/* Animated gradient background rings */}
-        <div className="absolute inset-0 flex items-center justify-center">
+        {/* Animated gradient background rings - always visible */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
           {/* Outer ring - animated pulse */}
           <motion.div
             className="absolute w-48 h-48 rounded-full bg-gradient-to-r from-blue-500/20 via-indigo-500/30 to-purple-500/20 blur-2xl"
-            animate={{
+            animate={!isMobile ? {
               scale: [1, 1.2, 1],
               opacity: [0.3, 0.5, 0.3],
               rotate: [0, 180, 360],
-            }}
+            } : {}}
             transition={{
               duration: 8,
               repeat: Infinity,
               ease: 'easeInOut',
             }}
+            style={{ willChange: !isMobile ? 'transform, opacity' : 'auto' }}
           />
           {/* Middle ring - counter rotation */}
           <motion.div
             className="absolute w-40 h-40 rounded-full bg-gradient-to-l from-cyan-500/25 via-blue-500/25 to-indigo-500/25 blur-xl"
-            animate={{
+            animate={!isMobile ? {
               scale: [1.1, 0.9, 1.1],
               opacity: [0.4, 0.6, 0.4],
               rotate: [360, 180, 0],
-            }}
+            } : {}}
             transition={{
               duration: 6,
               repeat: Infinity,
               ease: 'easeInOut',
             }}
+            style={{ willChange: !isMobile ? 'transform, opacity' : 'auto' }}
           />
           {/* Inner glow - pulsing */}
           <motion.div
             className="absolute w-36 h-36 rounded-full bg-gradient-to-tr from-blue-400/40 via-indigo-400/40 to-purple-400/40 blur-lg"
-            animate={{
+            animate={!isMobile ? {
               scale: [1, 1.15, 1],
               opacity: [0.5, 0.8, 0.5],
-            }}
+            } : {}}
             transition={{
               duration: 4,
               repeat: Infinity,
               ease: 'easeInOut',
             }}
+            style={{ willChange: !isMobile ? 'transform, opacity' : 'auto' }}
           />
         </div>
         

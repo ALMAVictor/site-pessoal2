@@ -54,8 +54,8 @@ body {
     -webkit-backdrop-filter: none !important;
   }
   
-  /* Reduce blur effects on decorative elements */
-  .absolute[class*="blur"] {
+  /* Reduce blur effects on decorative elements - but NOT on avatar rings */
+  .absolute[class*="blur"]:not([class*="w-48"]):not([class*="w-40"]):not([class*="w-36"]) {
     filter: blur(0) !important;
     opacity: 0.3 !important;
   }

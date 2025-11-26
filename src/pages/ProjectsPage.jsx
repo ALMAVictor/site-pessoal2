@@ -5,8 +5,6 @@ import { useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { FaExternalLinkAlt, FaGithub, FaTimes, FaClock, FaCode, FaChartLine } from 'react-icons/fa';
 import { projectsData, categories, markets, getMarketInfo } from '../data/projectsData';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 
 // Market Badge Component
 const MarketBadge = ({ market }) => {
@@ -253,9 +251,8 @@ const ProjectsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-blue-50/30 to-slate-50 flex flex-col">
-      <Header />
-      <main className="flex-1 pt-24 pb-12">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-blue-50/30 to-slate-50">
+      <div className="pt-24 pb-12">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             ref={ref}
@@ -428,8 +425,7 @@ const ProjectsPage = () => {
             )}
           </motion.div>
         </div>
-      </main>
-      <Footer />
+      </div>
 
       {/* Project Modal */}
       <ProjectModal

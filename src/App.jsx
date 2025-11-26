@@ -48,7 +48,7 @@ function App() {
       />
       <Route
         path="/projects"
-        element={<ProjectsPage />}
+        element={<Layout seoTitle="Featured Projects | Victor Mazoni - Hybrid Growth Engineer"><ProjectsPage /></Layout>}
       />
       <Route
         path="/blog"
