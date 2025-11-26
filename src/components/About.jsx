@@ -85,7 +85,7 @@ const About = () => {
                 visible: { opacity: 1, y: 0 },
               }}
             >
-              I'm a <strong>Hybrid Growth Engineer</strong> specialized in architecting customer acquisition ecosystems. My unique role combines deep understanding of Behavioral Psychology (Cialdini, Fogg, Kahneman), Branding, and Copywriting with the technical execution of Front-End Software Engineering.
+              I'm a <strong>Hybrid Growth Engineer</strong> specialized in architecting customer acquisition ecosystems. My unique role combines deep understanding of Consumer Behavioral Psychology (Cialdini, Fogg, Kahneman), Branding, and Copywriting with the technical execution of Front-End Software Engineering.
             </motion.p>
 
             <motion.p

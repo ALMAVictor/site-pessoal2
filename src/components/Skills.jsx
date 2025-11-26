@@ -173,10 +173,10 @@ const Skills = () => {
               </h3>
 
               <div className="mb-8">
-                <h4 className="text-xl font-bold text-slate-800 mb-4">Behavioral Psychology & CRO</h4>
+                <h4 className="text-xl font-bold text-slate-800 mb-4">Consumer Behavioral Psychology & CRO</h4>
                 <ul className="space-y-3">
                   {[
-                    { tech: 'Behavioral Psychology', desc: 'Application of Cialdini, Fogg, and Kahneman principles to influence user behavior.' },
+                    { tech: 'Consumer Behavioral Psychology', desc: 'Application of Cialdini, Fogg, and Kahneman principles to influence consumer behavior.' },
                     { tech: 'Growth Hacking & CRO', desc: 'Rapid experimentation, A/B/multivariate testing, and conversion funnel optimization.' },
                     { tech: 'Sales Funnel Design', desc: 'End-to-end customer journeys that transform visitors into customers.' },
                     { tech: 'Copywriting', desc: 'Persuasive texts (UI, landing pages, ads) that drive action and conversion.' },

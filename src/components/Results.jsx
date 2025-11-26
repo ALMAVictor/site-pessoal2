@@ -14,7 +14,7 @@ const results = [
   {
     metric: '22%',
     label: 'Reduction in CPA',
-    desc: 'Through A/B testing and behavioral psychology optimization',
+    desc: 'Through A/B testing and consumer behavioral psychology optimization',
     Icon: FaArrowDown,
     color: 'from-blue-500 to-indigo-600',
   },
@@ -73,7 +73,7 @@ const Results = () => {
               visible: { opacity: 1, y: 0 },
             }}
           >
-            Real metrics from real projects. Every number represents a strategic decision backed by behavioral psychology and data-driven optimization.
+            Real metrics from real projects. Every number represents a strategic decision backed by consumer behavioral psychology and data-driven optimization.
           </motion.p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">

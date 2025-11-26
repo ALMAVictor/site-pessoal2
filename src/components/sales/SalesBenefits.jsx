@@ -4,7 +4,7 @@ import { FaLightbulb, FaRocket, FaCheckCircle, FaHandshake, FaBolt, FaPalette, F
 
 const pillars = [
   {
-    title: 'Behavioral Psychology Applied',
+    title: 'Consumer Behavioral Psychology Applied',
     desc: "Every element uses principles from Cialdini, Fogg, and Kahneman. Social proof, scarcity, and persuasion triggers strategically placed to maximize conversion.",
     Icon: FaLightbulb,
   },
@@ -85,7 +85,7 @@ const SalesBenefits = () => {
               visible: { opacity: 1, y: 0 },
             }}
           >
-            I combine <strong>Behavioral Psychology</strong> (Cialdini, Fogg, Kahneman), <strong>A/B Testing</strong>, and <strong>Next.js/React</strong> to create landing pages that convert. Here are the <span className="underline decoration-2">4 pillars</span> that make the difference.
+            I combine <strong>Consumer Behavioral Psychology</strong> (Cialdini, Fogg, Kahneman), <strong>A/B Testing</strong>, and <strong>Next.js/React</strong> to create landing pages that convert. Here are the <span className="underline decoration-2">4 pillars</span> that make the difference.
           </motion.p>
           <div className="max-w-6xl mx-auto grid gap-8 md:grid-cols-4 mb-16">
             {pillars.map((item) => (

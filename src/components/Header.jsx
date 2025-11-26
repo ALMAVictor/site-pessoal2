@@ -5,9 +5,9 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 
 const navLinks = [
   { label: 'Home', href: '/' },
-  { label: 'Services', href: '/vendas', special: true },
-  { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
+  { label: 'Services', href: '/services', special: true },
+  { label: 'About', href: '/about' },
+  { label: 'Skills', href: '/skills' },
   { label: 'Projects', href: '/projects' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '#contact' },

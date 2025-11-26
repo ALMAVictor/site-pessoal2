@@ -158,14 +158,14 @@ const Hero = () => {
       {/* Main value proposition with premium typography */}
       <motion.p
         variants={itemVariants}
-        className="text-4xl md:text-6xl lg:text-7xl font-black text-white mt-4 tracking-tight leading-tight"
+        className="text-4xl md:text-6xl lg:text-7xl font-black mt-4 tracking-tight leading-tight"
       >
-        <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-white via-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent drop-shadow-lg">
           Hybrid Growth Engineer
         </span>
         <br />
-        <span className="text-3xl md:text-5xl lg:text-6xl font-bold text-blue-200/90 mt-2 block">
-          Where Behavioral Psychology Meets Code
+        <span className="text-3xl md:text-5xl lg:text-6xl font-bold mt-2 block bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300 bg-clip-text text-transparent drop-shadow-md">
+          Where Consumer Behavioral Psychology Meets Code
         </span>
       </motion.p>
       

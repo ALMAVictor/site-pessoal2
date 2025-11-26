@@ -82,7 +82,7 @@ const SalesHero = () => (
         </span>
       </h1>
       <p className="text-xl md:text-2xl text-blue-200 mb-8 max-w-3xl mx-auto leading-relaxed">
-        I design and code high-performance landing pages for Paid Traffic campaigns (Meta/Google Ads) using behavioral psychology principles. Proven results: <strong className="text-white">12.5% increase in conversion rate</strong> and <strong className="text-white">22% reduction in CPA</strong>.
+        I design and code high-performance landing pages for Paid Traffic campaigns (Meta/Google Ads) using consumer behavioral psychology principles. Proven results: <strong className="text-white">12.5% increase in conversion rate</strong> and <strong className="text-white">22% reduction in CPA</strong>.
       </p>
       <p className="text-lg text-blue-300/90 mb-12 max-w-3xl mx-auto">
         While your competitors sleep, your new landing page is closing deals.

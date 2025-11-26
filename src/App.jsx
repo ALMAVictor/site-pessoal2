@@ -10,14 +10,24 @@ import ProjectsPage from './pages/ProjectsPage';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Sales from './pages/Sales';
+import Services from './pages/Services';
+import AboutPage from './pages/AboutPage';
+import SkillsPage from './pages/SkillsPage';
 import { useEffect } from 'react';
+import { setSEOMetaTags } from './utils/seo';
 
-function Layout({ children, seoTitle }) {
+function Layout({ children, seoTitle, seoDescription, seoImage, seoUrl }) {
   useEffect(() => {
-    document.title = seoTitle;
-  }, [seoTitle]);
+    setSEOMetaTags({
+      title: seoTitle,
+      description: seoDescription,
+      image: seoImage,
+      url: seoUrl || window.location.href,
+    });
+  }, [seoTitle, seoDescription, seoImage, seoUrl]);
+  
   return (
-    <div className="bg-gray-100 dark:bg-gray-900 min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />
@@ -36,7 +46,7 @@ function App() {
       <Route
         path="/"
         element={
-          <Layout seoTitle="Victor Mazoni | Hybrid Growth Engineer | Behavioral Psychology + Front-End Engineering">
+          <Layout seoTitle="Victor Mazoni | Hybrid Growth Engineer | Consumer Behavioral Psychology + Front-End Engineering">
             <Hero />
             <About />
             <Results />
@@ -52,11 +62,31 @@ function App() {
       />
       <Route
         path="/blog"
-        element={<Layout seoTitle="Multimedia Blog | Victor Mazoni - Growth Engineering Insights"><Blog /></Layout>}
+        element={
+          <Layout
+            seoTitle="Multimedia Blog | Victor Mazoni - Growth Engineering Insights"
+            seoDescription="Articles, videos, and insights on Growth Engineering, Consumer Behavioral Psychology, and Front-End Development. Learn from real-world applications and strategies."
+            seoImage="/og-blog.jpg"
+          >
+            <Blog />
+          </Layout>
+        }
       />
       <Route
         path="/vendas"
         element={<Layout seoTitle="High-Converting Landing Pages for Paid Traffic | Victor Mazoni"><Sales /></Layout>}
+      />
+      <Route
+        path="/services"
+        element={<Layout seoTitle="Complete Growth Services | Victor Mazoni - Hybrid Growth Engineer"><Services /></Layout>}
+      />
+      <Route
+        path="/about"
+        element={<Layout seoTitle="About Victor Mazoni | Hybrid Growth Engineer - Psychology & Code"><AboutPage /></Layout>}
+      />
+      <Route
+        path="/skills"
+        element={<Layout seoTitle="Skills & Expertise | Victor Mazoni - Technical & Strategic Arsenal"><SkillsPage /></Layout>}
       />
       {/* Fallback */}
       <Route path="*" element={<Layout seoTitle="Página não encontrada | Victor Mazoni"><div className="h-64 flex flex-col items-center justify-center text-blue-700"><h1 className="text-3xl font-black">404</h1><p>Página não encontrada!</p></div></Layout>} />

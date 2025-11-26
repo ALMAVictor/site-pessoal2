@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { blogItems } from './blogData';
+import { blogItems } from '../../data/blogData';
 
 const colorMap = {
-  blog: 'bg-blue-900 text-white',
-  youtube: 'bg-red-600 text-white',
-  linkedin: 'bg-blue-600 text-white',
-  instagram: 'bg-pink-600 text-white',
+  blog: 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white',
+  youtube: 'bg-gradient-to-r from-red-600 to-pink-600 text-white',
 };
 
 const SKELETONS = Array(3).fill();
@@ -54,45 +52,69 @@ const BlogGrid = ({ selected = 'all' }) => {
     );
   }
   return (
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 max-w-5xl w-full">
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl w-full">
       <AnimatePresence>
         {filtered.map((item, idx) => (
           <motion.div
             key={item.url}
-            initial={{ opacity: 0, y: 27 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 27 }}
-            transition={{ delay: 0.05 * idx }}
-            className="rounded-xl shadow bg-white overflow-hidden flex flex-col hover:scale-[1.03] hover:shadow-xl transition"
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ delay: idx * 0.05, duration: 0.4, ease: 'easeOut' }}
+            whileHover={typeof window !== 'undefined' && window.innerWidth > 768 ? { y: -8, scale: 1.02 } : {}}
+            className="group bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl overflow-hidden flex flex-col border border-white/50 hover:shadow-2xl transition-all relative"
           >
+            {/* Premium shine effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/0 to-blue-50/0 group-hover:from-white/20 group-hover:via-transparent group-hover:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-3xl" />
+            
             {/* Badge/label */}
-            <span className={"inline-block px-3 py-1 m-3 rounded-full text-xs font-black " + colorMap[item.type]}>{item.badge}</span>
+            <div className="p-4 pb-0 relative z-10">
+              <span className={`inline-block px-3 py-1.5 rounded-full text-xs font-black shadow-lg ${colorMap[item.type]}`}>
+                {item.badge}
+              </span>
+            </div>
+            
             {/* Thumb ou embed */}
-            {item.type === 'youtube' ? (
-              <iframe
-                className="w-full h-40 border-0"
-                src={`https://www.youtube.com/embed/${item.embedId}`}
-                title={item.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            ) : (
-              <img src={item.image} alt={item.title} className="w-full h-40 object-cover" loading="lazy" decoding="async" />
-            )}
-            <div className="p-6 flex-1 flex flex-col">
-              <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
-              <p className="text-slate-600 text-sm flex-1 leading-relaxed">{item.description}</p>
-              <div className="flex items-end justify-between mt-6">
-                <span className="text-xs text-slate-400">{item.date}</span>
+            <div className="relative overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200">
+              {item.type === 'youtube' ? (
+                <iframe
+                  className="w-full h-48 border-0"
+                  src={`https://www.youtube.com/embed/${item.embedId}`}
+                  title={item.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              ) : (
+                <motion.img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </div>
+            
+            <div className="p-6 flex-1 flex flex-col relative z-10">
+              <h3 className="text-xl md:text-2xl font-extrabold text-slate-900 mb-3 leading-tight bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+                {item.title}
+              </h3>
+              <p className="text-slate-600 text-sm md:text-base flex-1 leading-relaxed mb-4">
+                {item.description}
+              </p>
+              <div className="flex items-end justify-between mt-auto pt-4 border-t border-slate-200/60">
+                <span className="text-xs text-slate-400 font-medium">{item.date}</span>
                 <motion.a
                   href={item.url}
                   target="_blank"
                   rel="noopener"
                   className={
                     (item.type === 'blog'
-                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white '
+                      ? 'bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 text-white shadow-lg shadow-blue-600/40 '
                       : 'bg-slate-100 text-slate-700 hover:bg-slate-200 ') +
-                    'rounded-full px-4 py-2 text-xs font-bold transition-all flex items-center gap-1'
+                    'rounded-full px-4 py-2 text-xs font-bold transition-all flex items-center gap-1 border border-slate-200/50'
                   }
                   whileHover={{ scale: 1.05, x: 3 }}
                   whileTap={{ scale: 0.98 }}

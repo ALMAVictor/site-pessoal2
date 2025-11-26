@@ -279,7 +279,7 @@ const ProjectsPage = () => {
                 </span>
               </h1>
               <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Hybrid projects combining Growth Engineering, Behavioral Psychology, and Front-End Development
+                Hybrid projects combining Growth Engineering, Consumer Behavioral Psychology, and Front-End Development
               </p>
             </motion.div>
 

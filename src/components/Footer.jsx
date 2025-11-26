@@ -18,7 +18,7 @@ const Footer = () => (
           Victor
         </div>
         <p className="text-white/70 leading-relaxed">
-          Hybrid Growth Engineer combining Behavioral Psychology, Branding, and Copywriting with Front-End Engineering. I architect customer acquisition ecosystems that translate human behavior into measurable revenue growth.
+          Hybrid Growth Engineer combining Consumer Behavioral Psychology, Branding, and Copywriting with Front-End Engineering. I architect customer acquisition ecosystems that translate consumer behavior into measurable revenue growth.
         </p>
       </motion.div>
 
