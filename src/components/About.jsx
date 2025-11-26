@@ -43,7 +43,7 @@ const About = () => {
               <motion.img
                 src="/victor1.JPG"
                 alt="Victor Mazoni - Professional Photo"
-                className="w-64 h-64 md:w-80 md:h-80 rounded-3xl object-cover shadow-2xl border-4 border-white/50"
+                className="w-56 h-80 md:w-72 md:h-96 rounded-3xl object-cover shadow-2xl border-4 border-white/50"
                 whileHover={typeof window !== 'undefined' && window.innerWidth > 768 ? { scale: 1.02, rotate: 1 } : {}}
                 transition={typeof window !== 'undefined' && window.innerWidth > 768 ? { type: 'spring', stiffness: 200, damping: 15 } : {}}
               />

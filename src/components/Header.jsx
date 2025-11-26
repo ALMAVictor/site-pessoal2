@@ -64,48 +64,74 @@ const Header = () => {
       {/* Mobile nav overlay */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.nav
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-white/95 backdrop-blur-xl z-[1000] flex flex-col items-center justify-center gap-6 md:hidden"
-          >
-            <motion.button
+          <>
+            {/* Dark backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               onClick={() => setMenuOpen(false)}
-              className="absolute top-6 right-6 p-3 rounded-full hover:bg-slate-100 transition-colors"
-              whileHover={{ rotate: 90 }}
-              whileTap={{ scale: 0.9 }}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[999] md:hidden"
+            />
+            {/* Menu panel */}
+            <motion.nav
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-[1000] flex flex-col md:hidden"
             >
-              <FaTimes className="text-slate-700" size={24} />
-            </motion.button>
-            {navLinks.map((link, idx) => link.special ? (
-              <motion.a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-lg font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-3 rounded-full hover:shadow-xl w-48 text-center transition-all"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {link.label}
-              </motion.a>
-            ) : (
-              <motion.a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-lg font-semibold py-3 w-48 text-slate-900 text-center hover:text-blue-600 transition-colors"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-              >
-                {link.label}
-              </motion.a>
-            ))}
-          </motion.nav>
+              {/* Header with close button */}
+              <div className="flex items-center justify-between p-6 border-b border-slate-200">
+                <h2 className="text-xl font-black bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                  Menu
+                </h2>
+                <motion.button
+                  onClick={() => setMenuOpen(false)}
+                  className="p-2 rounded-full hover:bg-slate-100 transition-colors"
+                  whileHover={{ rotate: 90, scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <FaTimes className="text-slate-700" size={24} />
+                </motion.button>
+              </div>
+              
+              {/* Navigation links */}
+              <div className="flex-1 overflow-y-auto py-6 px-4">
+                <div className="space-y-2">
+                  {navLinks.map((link, idx) => link.special ? (
+                    <motion.a
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="block w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.08, type: 'spring', stiffness: 200 }}
+                      whileHover={{ scale: 1.02, x: 4 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      {link.label}
+                    </motion.a>
+                  ) : (
+                    <motion.a
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="block w-full px-6 py-4 rounded-xl font-semibold text-slate-700 hover:bg-slate-100 hover:text-blue-600 transition-all border border-transparent hover:border-slate-200"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.08, type: 'spring', stiffness: 200 }}
+                      whileHover={{ x: 4 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      {link.label}
+                    </motion.a>
+                  ))}
+                </div>
+              </div>
+            </motion.nav>
+          </>
         )}
       </AnimatePresence>
     </header>

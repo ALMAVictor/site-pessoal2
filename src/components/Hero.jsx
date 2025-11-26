@@ -74,19 +74,72 @@ const Hero = () => {
       animate="visible"
       className="relative z-10"
     >
-      {/* Avatar with premium glow effect */}
+      {/* Avatar with premium animated background */}
       <motion.div
         variants={itemVariants}
-        className="mb-8 flex justify-center"
+        className="mb-8 flex justify-center relative"
       >
-        <motion.img
-          className="w-36 h-36 rounded-full border-4 border-white/20 shadow-2xl object-cover object-center"
-          src="/victor1.JPG"
-          alt="Victor Mazoni"
-          whileHover={isMobile ? {} : { scale: 1.05, rotate: 1 }}
-          transition={isMobile ? {} : { type: 'spring', stiffness: 200, damping: 15 }}
-        />
-        <div className="absolute inset-0 w-36 h-36 rounded-full bg-gradient-to-tr from-blue-400/30 to-indigo-400/30 blur-xl -z-10" />
+        {/* Animated gradient background rings */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          {/* Outer ring - animated pulse */}
+          <motion.div
+            className="absolute w-48 h-48 rounded-full bg-gradient-to-r from-blue-500/20 via-indigo-500/30 to-purple-500/20 blur-2xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.5, 0.3],
+              rotate: [0, 180, 360],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+          {/* Middle ring - counter rotation */}
+          <motion.div
+            className="absolute w-40 h-40 rounded-full bg-gradient-to-l from-cyan-500/25 via-blue-500/25 to-indigo-500/25 blur-xl"
+            animate={{
+              scale: [1.1, 0.9, 1.1],
+              opacity: [0.4, 0.6, 0.4],
+              rotate: [360, 180, 0],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+          {/* Inner glow - pulsing */}
+          <motion.div
+            className="absolute w-36 h-36 rounded-full bg-gradient-to-tr from-blue-400/40 via-indigo-400/40 to-purple-400/40 blur-lg"
+            animate={{
+              scale: [1, 1.15, 1],
+              opacity: [0.5, 0.8, 0.5],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+        </div>
+        
+        {/* Photo with border - square format */}
+        <motion.div className="relative z-10">
+          <motion.img
+            className="w-36 h-36 rounded-3xl border-4 border-white/30 shadow-2xl object-cover object-center relative z-10"
+            src="/victor1.JPG"
+            alt="Victor Mazoni"
+            whileHover={isMobile ? {} : { scale: 1.05, rotate: 1 }}
+            transition={isMobile ? {} : { type: 'spring', stiffness: 200, damping: 15 }}
+          />
+          {/* Shine effect on hover */}
+          <motion.div
+            className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-white/20 via-transparent to-transparent opacity-0"
+            whileHover={isMobile ? {} : { opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          />
+        </motion.div>
       </motion.div>
 
       {/* Name with subtle animation */}
