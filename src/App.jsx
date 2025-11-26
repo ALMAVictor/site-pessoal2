@@ -2,9 +2,11 @@ import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
+import Results from './components/Results';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Blog from './pages/Blog';
+import ProjectsPage from './pages/ProjectsPage';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Sales from './pages/Sales';
@@ -34,9 +36,10 @@ function App() {
       <Route
         path="/"
         element={
-          <Layout seoTitle="Victor Mazoni | Dev Front-End, Sites e Landing Pages">
+          <Layout seoTitle="Victor Mazoni | Hybrid Growth Engineer | Behavioral Psychology + Front-End Engineering">
             <Hero />
             <About />
+            <Results />
             <Skills />
             <Projects />
             <Contact />
@@ -44,12 +47,16 @@ function App() {
         }
       />
       <Route
+        path="/projects"
+        element={<ProjectsPage />}
+      />
+      <Route
         path="/blog"
-        element={<Layout seoTitle="Blog Multimídia | Victor Mazoni"><Blog /></Layout>}
+        element={<Layout seoTitle="Multimedia Blog | Victor Mazoni - Growth Engineering Insights"><Blog /></Layout>}
       />
       <Route
         path="/vendas"
-        element={<Layout seoTitle="Landing Pages & Sites Modernos | Victor Mazoni"><Sales /></Layout>}
+        element={<Layout seoTitle="High-Converting Landing Pages for Paid Traffic | Victor Mazoni"><Sales /></Layout>}
       />
       {/* Fallback */}
       <Route path="*" element={<Layout seoTitle="Página não encontrada | Victor Mazoni"><div className="h-64 flex flex-col items-center justify-center text-blue-700"><h1 className="text-3xl font-black">404</h1><p>Página não encontrada!</p></div></Layout>} />

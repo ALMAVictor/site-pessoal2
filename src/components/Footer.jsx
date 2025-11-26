@@ -1,66 +1,124 @@
-const Icon = ({ path }) => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white/80 hover:text-white transition">
-    <path d={path} stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
+import { motion } from 'framer-motion';
+import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
 
 const Footer = () => (
-  <footer className="mt-auto bg-gradient-to-b from-blue-900 via-blue-900 to-blue-950 text-white/90">
-    <div className="max-w-6xl mx-auto px-6 py-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+  <footer className="mt-auto bg-gradient-to-b from-slate-900 via-blue-900 to-slate-950 text-white/90 relative overflow-hidden">
+    {/* Decorative background */}
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent)]" />
+
+    <div className="max-w-7xl mx-auto px-6 py-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-4 relative z-10">
       {/* Branding */}
-      <div>
-        <div className="text-2xl font-black tracking-tight">Victor</div>
-        <p className="text-white/70 mt-2 leading-relaxed">
-          Dev que entende de vendas. Construo experiências digitais que deixam marcas e geram resultados reais.
-        </p>
-      </div>
-
-      {/* Navegação rápida */}
-      <div>
-        <div className="font-bold text-white mb-3">Navegação</div>
-        <ul className="space-y-2 text-white/80">
-          <li><a href="#about" className="hover:text-white transition">Sobre</a></li>
-          <li><a href="#skills" className="hover:text-white transition">Frentes de Atuação</a></li>
-          <li><a href="#projects" className="hover:text-white transition">Projetos</a></li>
-          <li><a href="/blog" className="hover:text-white transition">Blog</a></li>
-          <li><a href="/vendas" className="hover:text-white transition">Vendas</a></li>
-        </ul>
-      </div>
-
-      {/* Contato */}
-      <div>
-        <div className="font-bold text-white mb-3">Contato</div>
-        <ul className="space-y-2 text-white/80">
-          <li><a href="#contact" className="hover:text-white transition">Iniciar o Projeto ↗</a></li>
-          <li><a href="https://wa.me/5516991023690" target="_blank" rel="noopener" className="hover:text-white transition">WhatsApp</a></li>
-          <li><a href="mailto:contato@victormazoni.dev" className="hover:text-white transition">contato@victormazoni.dev</a></li>
-        </ul>
-      </div>
-
-      {/* Sociais */}
-      <div>
-        <div className="font-bold text-white mb-3">Redes</div>
-        <div className="flex items-center gap-4">
-          {/* LinkedIn */}
-          <a href="#" aria-label="LinkedIn">
-            <Icon path="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2c-1.1 0-2 .9-2 2v7h-4v-7a6 6 0 0 1 6-6Z M6 9H2v12h4V9Zm2-4a2 2 0 1 1-4 0a2 2 0 0 1 4 0Z"/>
-          </a>
-          {/* GitHub */}
-          <a href="#" aria-label="GitHub">
-            <Icon path="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 19 2.77 5.07 5.07 0 0 0 18.91 0S17.73.35 15 2.34a13.38 13.38 0 0 0-6 0C6.27.35 5.09 0 5.09 0A5.07 5.07 0 0 0 5 2.77 5.44 5.44 0 0 0 3.5 8.5c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 21.13V24"/>
-          </a>
-          {/* Instagram */}
-          <a href="#" aria-label="Instagram">
-            <Icon path="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5a5 5 0 1 0 0 10a5 5 0 0 0 0-10Zm6-1.5a1 1 0 1 0 0 2a1 1 0 0 0 0-2Z"/>
-          </a>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="text-3xl font-black tracking-tight bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent mb-3">
+          Victor
         </div>
-      </div>
+        <p className="text-white/70 leading-relaxed">
+          Hybrid Growth Engineer combining Behavioral Psychology, Branding, and Copywriting with Front-End Engineering. I architect customer acquisition ecosystems that translate human behavior into measurable revenue growth.
+        </p>
+      </motion.div>
+
+      {/* Quick Navigation */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+      >
+        <div className="font-bold text-white mb-4">Navigation</div>
+        <ul className="space-y-3 text-white/80">
+          {[
+            { label: 'About', href: '#about' },
+            { label: 'Expertise', href: '#skills' },
+            { label: 'Projects', href: '#projects' },
+            { label: 'Blog', href: '/blog' },
+            { label: 'Services', href: '/vendas' },
+          ].map(link => (
+            <li key={link.href}>
+              <a href={link.href} className="hover:text-white transition-colors flex items-center gap-2 group">
+                <span className="w-1.5 h-1.5 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </motion.div>
+
+      {/* Contact */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        <div className="font-bold text-white mb-4">Contact</div>
+        <ul className="space-y-3 text-white/80">
+          <li>
+            <a href="#contact" className="hover:text-white transition-colors flex items-center gap-2 group">
+              <span className="w-1.5 h-1.5 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+              Start Project →
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://wa.me/5516991023690"
+              target="_blank"
+              rel="noopener"
+              className="hover:text-white transition-colors flex items-center gap-2 group"
+            >
+              <FaWhatsapp className="text-green-400" size={16} />
+              WhatsApp
+            </a>
+          </li>
+          <li>
+            <a
+              href="mailto:victormazoni0@gmail.com"
+              className="hover:text-white transition-colors flex items-center gap-2 group"
+            >
+              <FaEnvelope className="text-blue-400" size={16} />
+              victormazoni0@gmail.com
+            </a>
+          </li>
+        </ul>
+      </motion.div>
+
+      {/* Social */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+      >
+        <div className="font-bold text-white mb-4">Connect</div>
+        <div className="flex items-center gap-4">
+          {[
+            { Icon: FaLinkedin, href: 'https://www.linkedin.com/in/victor-mazoni-2596171b7/', label: 'LinkedIn', color: 'text-blue-400' },
+            { Icon: FaGithub, href: 'https://github.com/ALMAVictor', label: 'GitHub', color: 'text-slate-300' },
+            { Icon: FaInstagram, href: '#', label: 'Instagram', color: 'text-pink-400' },
+          ].map(({ Icon, href, label, color }) => (
+            <motion.a
+              key={label}
+              href={href}
+              aria-label={label}
+              className={`p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 ${color} hover:bg-white/10 hover:border-white/20 transition-all`}
+              whileHover={{ scale: 1.15, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <Icon size={20} />
+            </motion.a>
+          ))}
+        </div>
+      </motion.div>
     </div>
 
-    {/* Barra inferior */}
-    <div className="border-t border-white/10">
-      <div className="max-w-6xl mx-auto px-6 py-5 text-center text-white/60 text-sm">
-        &copy; {new Date().getFullYear()} Victor Mazoni · Todos os direitos reservados.
+    {/* Bottom bar */}
+    <div className="border-t border-white/10 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 py-6 text-center text-white/50 text-sm">
+        &copy; {new Date().getFullYear()} Victor Mazoni · All rights reserved.
       </div>
     </div>
   </footer>

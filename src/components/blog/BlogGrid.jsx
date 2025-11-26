@@ -43,7 +43,15 @@ const BlogGrid = ({ selected = 'all' }) => {
     );
   }
   if (!filtered.length) {
-    return <div className="w-full max-w-2xl py-16 text-center text-blue-600 font-bold text-xl">Nenhum conteúdo encontrado para esse filtro.<br/>🚧 Novidades em breve! 🚧</div>;
+    return (
+      <motion.div
+        className="w-full max-w-2xl py-16 text-center text-slate-600 font-bold text-xl"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
+        No content found for this filter.<br />🚧 Coming soon! 🚧
+      </motion.div>
+    );
   }
   return (
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 max-w-5xl w-full">
@@ -71,14 +79,26 @@ const BlogGrid = ({ selected = 'all' }) => {
             ) : (
               <img src={item.image} alt={item.title} className="w-full h-40 object-cover" />
             )}
-            <div className="p-4 flex-1 flex flex-col">
-              <h3 className="text-lg font-bold text-blue-900 mb-2">{item.title}</h3>
-              <p className="text-gray-600 text-sm flex-1">{item.description}</p>
-              <div className="flex items-end justify-between mt-4">
-                <span className="text-xs text-gray-400">{item.date}</span>
-                <a href={item.url} target="_blank" rel="noopener" className={
-                  (item.type === 'blog' ? 'bg-blue-700 ' : 'bg-blue-200 ') + 'rounded px-3 py-1 text-xs font-bold text-blue-900 hover:bg-blue-900 hover:text-white transition'}
-                >Ver mais</a>
+            <div className="p-6 flex-1 flex flex-col">
+              <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
+              <p className="text-slate-600 text-sm flex-1 leading-relaxed">{item.description}</p>
+              <div className="flex items-end justify-between mt-6">
+                <span className="text-xs text-slate-400">{item.date}</span>
+                <motion.a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener"
+                  className={
+                    (item.type === 'blog'
+                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white '
+                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200 ') +
+                    'rounded-full px-4 py-2 text-xs font-bold transition-all flex items-center gap-1'
+                  }
+                  whileHover={{ scale: 1.05, x: 3 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  View More →
+                </motion.a>
               </div>
             </div>
           </motion.div>

@@ -1,30 +1,30 @@
 export const blogItems = [
   {
     type: 'blog',
-    title: 'Como aprender mais rápido em tecnologia',
-    description: 'Meu método exclusivo e exemplos reais',
+    title: 'How to Learn Faster in Technology',
+    description: 'My exclusive method and real examples',
     url: '#',
-    image: 'https://placehold.co/400x220?text=Blog+Autor',
-    badge: 'Exclusivo',
+    image: 'https://placehold.co/400x220?text=Blog+Author',
+    badge: 'Exclusive',
     date: '2025-10-30',
   },
   {
     type: 'linkedin',
-    title: 'Thread: Mentalidade moderna para devs',
+    title: 'Thread: Modern Mindset for Devs',
     url: 'https://linkedin.com/',
     image: 'https://placehold.co/400x220?text=LinkedIn+Post',
-    description: 'Resumo da minha publicação viral no LinkedIn.',
+    description: 'Summary of my viral LinkedIn publication.',
     badge: 'LinkedIn',
     date: '2025-10-25',
   },
   {
     type: 'youtube',
-    title: 'Vlog: Meu setup dev favorito',
+    title: 'Vlog: My Favorite Dev Setup',
     url: 'https://youtube.com/',
     embedId: 'dQw4w9WgXcQ',
-    description: 'Tour animado e review de ferramentas.',
+    description: 'Animated tour and tool review.',
     badge: 'YouTube',
     date: '2025-10-15',
   },
-  // Adicione novos conteúdos aqui!
+  // Add new content here!
 ];

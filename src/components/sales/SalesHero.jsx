@@ -51,29 +51,62 @@ function FireSVG() {
 }
 
 const SalesHero = () => (
-  <section className="w-full py-20 px-4 bg-gradient-to-br from-blue-200 to-blue-50 text-center shadow-md">
-    <h1 className="text-4xl md:text-5xl font-extrabold text-blue-900 max-w-3xl mx-auto mb-5">
-    Seu Site, Uma Máquina de Vendas.
-    </h1>
-    <p className="text-xl text-blue-800 mb-8 max-w-2xl mx-auto">
-    Enquanto seus concorrentes dormem, seu novo site está fechando novos clientes.
-    </p>
-    <div className="flex justify-center">
-      <motion.a
-        href="#sales-cta"
-        className="relative w-fit px-14 py-6 font-black text-xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-600 shadow-2xl text-white rounded-full overflow-hidden focus:outline-none focus:ring-4 focus:ring-yellow-200 hover:brightness-110 group"
-        whileHover={{ scale: 1.08, rotate: '-2deg' }}
-        whileTap={{ scale: 0.98, rotate: '2deg' }}
-        style={{ boxShadow: '0 0 48px 10px #fd7a1b55, 0 0 16px 0 #ffdb6e' }}
-        aria-label="Quero vender mais! (Botão em chamas)"
-      >
-        <span className="relative z-10 drop-shadow-lg text-yellow-100">🔥 Quero vender mais! 🔥</span>
-        {/* Chamas animadas acima do botão */}
-        <span className="pointer-events-none absolute inset-0 z-0">
-          <FireSVG />
-        </span>
-      </motion.a>
+  <section className="w-full py-24 px-4 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-950 text-center relative overflow-hidden">
+    {/* Animated background orbs */}
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <motion.div
+        className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl"
+        animate={{
+          x: [0, 50, 0],
+          y: [0, 30, 0],
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      />
     </div>
+
+    <motion.div
+      className="relative z-10"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
+      <h1 className="text-5xl md:text-7xl font-black text-white max-w-4xl mx-auto mb-6 leading-tight">
+        Landing Pages That{' '}
+        <span className="bg-gradient-to-r from-orange-400 via-red-500 to-orange-600 bg-clip-text text-transparent">
+          Convert Like Crazy.
+        </span>
+      </h1>
+      <p className="text-xl md:text-2xl text-blue-200 mb-8 max-w-3xl mx-auto leading-relaxed">
+        I design and code high-performance landing pages for Paid Traffic campaigns (Meta/Google Ads) using behavioral psychology principles. Proven results: <strong className="text-white">12.5% increase in conversion rate</strong> and <strong className="text-white">22% reduction in CPA</strong>.
+      </p>
+      <p className="text-lg text-blue-300/90 mb-12 max-w-3xl mx-auto">
+        While your competitors sleep, your new landing page is closing deals.
+      </p>
+      <div className="flex justify-center">
+        <motion.a
+          href="#contact"
+          className="relative w-fit px-16 py-7 font-black text-xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-600 shadow-2xl text-white rounded-full overflow-hidden focus:outline-none focus:ring-4 focus:ring-yellow-200 hover:brightness-110 group"
+          whileHover={{ scale: 1.08, rotate: '-2deg' }}
+          whileTap={{ scale: 0.98, rotate: '2deg' }}
+          style={{ boxShadow: '0 0 48px 10px #fd7a1b55, 0 0 16px 0 #ffdb6e' }}
+          aria-label="I want to sell more! (Fire button)"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
+        >
+          <span className="relative z-10 drop-shadow-lg text-yellow-100">🔥 I Want to Sell More! 🔥</span>
+          {/* Animated flames above button */}
+          <span className="pointer-events-none absolute inset-0 z-0">
+            <FireSVG />
+          </span>
+        </motion.a>
+      </div>
+    </motion.div>
   </section>
 );
 

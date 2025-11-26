@@ -1,79 +1,252 @@
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { FaCheckCircle } from 'react-icons/fa';
+
 const CheckIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-blue-700 shrink-0 mt-1">
-    <path d="M20 7L9 18L4 13" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
+  <FaCheckCircle className="text-blue-600 shrink-0 mt-1" size={18} />
 );
 
-const Skills = () => (
-  <section id="skills" className="py-20 bg-blue-50">
-    <div className="max-w-6xl mx-auto px-6">
-      <h2 className="text-4xl md:text-5xl font-black mb-4 text-blue-900 text-center tracking-tight">Minhas Frentes de Atuação</h2>
-      <p className="text-center text-blue-800/90 mb-14 font-semibold text-lg md:text-xl">Dois pilares que constroem resultados: <span className="underline decoration-2">Arsenal Técnico</span> + <span className="underline decoration-2">Arsenal Estratégico</span>.</p>
+const Skills = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-      <div className="grid md:grid-cols-2 gap-10">
-        {/* Pilar 1: Arsenal Técnico */}
-        <div className="bg-white rounded-3xl shadow-[0_10px_30px_-12px_rgba(30,64,175,0.25)] p-8 md:p-10 border border-blue-100/70">
-          <h3 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-6 leading-tight">Arsenal Técnico</h3>
+  return (
+    <section id="skills" className="py-24 bg-gradient-to-b from-slate-50 via-blue-50/50 to-slate-50 relative overflow-hidden">
+      {/* Decorative background */}
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-gradient-to-r from-blue-200/20 to-indigo-200/20 rounded-full blur-3xl -z-0" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-l from-purple-200/20 to-pink-200/20 rounded-full blur-3xl -z-0" />
 
-          <div className="mb-7">
-            <h4 className="text-xl font-bold text-blue-800 mb-3">Core Front‑End</h4>
-            <ul className="space-y-2">
-              <li className="flex gap-3 text-gray-700"><CheckIcon /><span><strong>React:</strong> Interfaces reativas, rápidas e escaláveis.</span></li>
-              <li className="flex gap-3 text-gray-700"><CheckIcon /><span><strong>JavaScript (ES6+):</strong> Linguagem que move a web moderna.</span></li>
-              <li className="flex gap-3 text-gray-700"><CheckIcon /><span><strong>TypeScript:</strong> Código seguro, legível e robusto para projetos complexos.</span></li>
-            </ul>
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <motion.div
+          ref={ref}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          variants={{
+            visible: { transition: { staggerChildren: 0.1 } },
+          }}
+        >
+          <motion.h2
+            className="text-5xl md:text-6xl font-black mb-4 text-slate-900 text-center tracking-tight"
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            My Areas of Expertise
+          </motion.h2>
+          <motion.p
+            className="text-center text-slate-700 mb-16 font-semibold text-lg md:text-xl"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            Two pillars that build results:{' '}
+            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent font-bold">
+              Technical Arsenal
+            </span>{' '}
+            +{' '}
+            <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent font-bold">
+              Strategic Arsenal
+            </span>
+          </motion.p>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Pillar 1: Technical Arsenal */}
+            <motion.div
+              className="bg-white/80 backdrop-blur-md rounded-3xl shadow-xl p-8 md:p-10 border border-white/50 hover:shadow-2xl transition-all"
+              variants={{
+                hidden: { opacity: 0, x: -50 },
+                visible: {
+                  opacity: 1,
+                  x: 0,
+                  transition: { type: 'spring', stiffness: 100 },
+                },
+              }}
+              whileHover={{ y: -5 }}
+            >
+              <h3 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-8 leading-tight bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                Technical Arsenal
+              </h3>
+
+              <div className="mb-8">
+                <h4 className="text-xl font-bold text-slate-800 mb-4">Core Front‑End</h4>
+                <ul className="space-y-3">
+                  {[
+                    { tech: 'HTML5', desc: 'Semantic and accessible structure for the modern web.' },
+                    { tech: 'React.js', desc: 'Reactive, fast, and scalable interfaces for high-performance applications.' },
+                    { tech: 'Next.js', desc: 'Full-stack React framework for production-ready applications and landing pages.' },
+                    { tech: 'React Native', desc: 'Cross-platform mobile apps with native performance.' },
+                    { tech: 'JavaScript (ES6+)', desc: 'The language that powers the modern web.' },
+                    { tech: 'TypeScript', desc: 'Safe, readable, and robust code for complex projects.' },
+                  ].map((item, idx) => (
+                    <motion.li
+                      key={item.tech}
+                      className="flex gap-3 text-slate-700"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.3 + idx * 0.1 }}
+                    >
+                      <CheckIcon />
+                      <span>
+                        <strong className="text-slate-900">{item.tech}:</strong> {item.desc}
+                      </span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mb-8">
+                <h4 className="text-xl font-bold text-slate-800 mb-4">UI & Styling</h4>
+                <ul className="space-y-3">
+                  {[
+                    { tech: 'Tailwind CSS', desc: 'Agile, responsive, and 100% customized design.' },
+                    { tech: 'Styled-Components', desc: 'CSS-in-JS for component-scoped styling and theming.' },
+                    { tech: 'CSS3 / SASS', desc: 'Advanced style architecture for scalable products.' },
+                    { tech: 'Figma', desc: 'Design system translation from UI/UX directly to code.' },
+                  ].map((item, idx) => (
+                    <motion.li
+                      key={item.tech}
+                      className="flex gap-3 text-slate-700"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.8 + idx * 0.1 }}
+                    >
+                      <CheckIcon />
+                      <span>
+                        <strong className="text-slate-900">{item.tech}:</strong> {item.desc}
+                      </span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-slate-800 mb-4">Ecosystem & Tools</h4>
+                <ul className="space-y-3">
+                  {[
+                    { tech: 'Vite', desc: 'Lightning-fast build tool for agile development.' },
+                    { tech: 'Git / GitHub', desc: 'Reliable version control and collaborative workflows.' },
+                    { tech: 'Vercel', desc: 'Deployment platform for modern web applications with CI/CD.' },
+                    { tech: 'A/B Testing Tools', desc: 'VWO, Google Optimize for conversion rate optimization.' },
+                    { tech: 'Web Performance', desc: 'Core Web Vitals optimization and responsive design principles.' },
+                    { tech: 'Agile Methodologies', desc: 'Iterative development and rapid experimentation cycles.' },
+                    { tech: 'Node.js (Beginner)', desc: 'Development environments and support APIs.' },
+                  ].map((item, idx) => (
+                    <motion.li
+                      key={item.tech}
+                      className="flex gap-3 text-slate-700"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 1.1 + idx * 0.1 }}
+                    >
+                      <CheckIcon />
+                      <span>
+                        <strong className="text-slate-900">{item.tech}:</strong> {item.desc}
+                      </span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+
+            {/* Pillar 2: Strategic Arsenal */}
+            <motion.div
+              className="bg-white/80 backdrop-blur-md rounded-3xl shadow-xl p-8 md:p-10 border border-white/50 hover:shadow-2xl transition-all"
+              variants={{
+                hidden: { opacity: 0, x: 50 },
+                visible: {
+                  opacity: 1,
+                  x: 0,
+                  transition: { type: 'spring', stiffness: 100 },
+                },
+              }}
+              whileHover={{ y: -5 }}
+            >
+              <h3 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-8 leading-tight bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                Strategic Arsenal
+              </h3>
+
+              <div className="mb-8">
+                <h4 className="text-xl font-bold text-slate-800 mb-4">Behavioral Psychology & CRO</h4>
+                <ul className="space-y-3">
+                  {[
+                    { tech: 'Behavioral Psychology', desc: 'Application of Cialdini, Fogg, and Kahneman principles to influence user behavior.' },
+                    { tech: 'Growth Hacking & CRO', desc: 'Rapid experimentation, A/B/multivariate testing, and conversion funnel optimization.' },
+                    { tech: 'Sales Funnel Design', desc: 'End-to-end customer journeys that transform visitors into customers.' },
+                    { tech: 'Copywriting', desc: 'Persuasive texts (UI, landing pages, ads) that drive action and conversion.' },
+                  ].map((item, idx) => (
+                    <motion.li
+                      key={item.tech}
+                      className="flex gap-3 text-slate-700"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.3 + idx * 0.1 }}
+                    >
+                      <CheckIcon />
+                      <span>
+                        <strong className="text-slate-900">{item.tech}:</strong> {item.desc}
+                      </span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mb-8">
+                <h4 className="text-xl font-bold text-slate-800 mb-4">Positioning & Brand Strategy</h4>
+                <ul className="space-y-3">
+                  {[
+                    { tech: 'Brand Strategy', desc: 'Positioning, verbal identity, and brand architecture for authentic identities.' },
+                    { tech: 'Branding', desc: 'Creation of brand narratives that resonate with target audiences.' },
+                    { tech: 'Content Marketing', desc: 'Continuous authority building and engagement strategies.' },
+                  ].map((item, idx) => (
+                    <motion.li
+                      key={item.tech}
+                      className="flex gap-3 text-slate-700"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.5 + idx * 0.1 }}
+                    >
+                      <CheckIcon />
+                      <span>
+                        <strong className="text-slate-900">{item.tech}:</strong> {item.desc}
+                      </span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-slate-800 mb-4">Paid Traffic & Data Analysis</h4>
+                <ul className="space-y-3">
+                  {[
+                    { tech: 'Paid Traffic (Multiplatform)', desc: 'Campaign management and optimization on Google Ads, Meta Ads, LinkedIn Ads focused on ROAS.' },
+                    { tech: 'Data Analysis', desc: 'Proficiency in Google Analytics, Mixpanel, Hotjar, and funnel analysis tools.' },
+                    { tech: 'SEO', desc: 'Organic positioning strategies for qualified traffic generation.' },
+                    { tech: 'Analytics & ROI', desc: 'Data-driven decisions, funnel analysis, and conversion bottleneck identification.' },
+                  ].map((item, idx) => (
+                    <motion.li
+                      key={item.tech}
+                      className="flex gap-3 text-slate-700"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.7 + idx * 0.1 }}
+                    >
+                      <CheckIcon />
+                      <span>
+                        <strong className="text-slate-900">{item.tech}:</strong> {item.desc}
+                      </span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
           </div>
-
-          <div className="mb-7">
-            <h4 className="text-xl font-bold text-blue-800 mb-3">UI & Estilização</h4>
-            <ul className="space-y-2">
-              <li className="flex gap-3 text-gray-700"><CheckIcon /><span><strong>Tailwind CSS:</strong> Design ágil, responsivo e 100% customizado.</span></li>
-              <li className="flex gap-3 text-gray-700"><CheckIcon /><span><strong>CSS3 / SASS:</strong> Arquitetura de estilos para produtos escaláveis.</span></li>
-              <li className="flex gap-3 text-gray-700"><CheckIcon /><span><strong>Figma:</strong> Tradução fiel de UI/UX diretamente para o código.</span></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-xl font-bold text-blue-800 mb-3">Ecossistema & Ferramentas</h4>
-            <ul className="space-y-2">
-              <li className="flex gap-3 text-gray-700"><CheckIcon /><span><strong>Vite:</strong> Build tool veloz para desenvolvimento ágil.</span></li>
-              <li className="flex gap-3 text-gray-700"><CheckIcon /><span><strong>Git / GitHub:</strong> Fluxos de versionamento confiáveis.</span></li>
-              <li className="flex gap-3 text-gray-700"><CheckIcon /><span><strong>Node.js (Iniciante):</strong> Ambientes de dev e APIs de suporte.</span></li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Pilar 2: Arsenal Estratégico */}
-        <div className="bg-white rounded-3xl shadow-[0_10px_30px_-12px_rgba(30,64,175,0.25)] p-8 md:p-10 border border-blue-100/70">
-          <h3 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-6 leading-tight">Arsenal Estratégico</h3>
-
-          <div className="mb-7">
-            <h4 className="text-xl font-bold text-blue-800 mb-3">Estratégia de Conversão</h4>
-            <ul className="space-y-2">
-              <li className="flex gap-3 text-gray-700"><CheckIcon /><span><strong>Funil de Vendas:</strong> Jornadas que transformam visitantes em clientes.</span></li>
-              <li className="flex gap-3 text-gray-700"><CheckIcon /><span><strong>Copywriting:</strong> CTAs e mensagens orientadas à ação.</span></li>
-            </ul>
-          </div>
-
-          <div className="mb-7">
-            <h4 className="text-xl font-bold text-blue-800 mb-3">Posicionamento & Marca</h4>
-            <ul className="space-y-2">
-              <li className="flex gap-3 text-gray-700"><CheckIcon /><span><strong>Branding:</strong> Identidades autênticas com propósito.</span></li>
-              <li className="flex gap-3 text-gray-700"><CheckIcon /><span><strong>Marketing de Conteúdo:</strong> Autoridade e engajamento contínuos.</span></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-xl font-bold text-blue-800 mb-3">Performance & Dados</h4>
-            <ul className="space-y-2">
-              <li className="flex gap-3 text-gray-700"><CheckIcon /><span><strong>SEO:</strong> Tráfego qualificado por posicionamento orgânico.</span></li>
-              <li className="flex gap-3 text-gray-700"><CheckIcon /><span><strong>Analytics:</strong> Decisões guiadas por dados e ROI.</span></li>
-            </ul>
-          </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
-  </section>
-)
+    </section>
+  );
+};
 
 export default Skills;

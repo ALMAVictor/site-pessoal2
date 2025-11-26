@@ -1,89 +1,163 @@
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { FaLightbulb, FaRocket, FaCheckCircle, FaHandshake, FaBolt, FaPalette, FaMobileAlt, FaLink } from 'react-icons/fa';
 
 const pillars = [
   {
-    title: 'Feito para Converter',
-    desc: 'Não é só um site bonito. Cada elemento é desenhado estrategicamente para transformar seu visitante em um cliente.',
-    icon: '💡',
+    title: 'Behavioral Psychology Applied',
+    desc: "Every element uses principles from Cialdini, Fogg, and Kahneman. Social proof, scarcity, and persuasion triggers strategically placed to maximize conversion.",
+    Icon: FaLightbulb,
   },
   {
-    title: 'Seu Site no Ar em 7 Dias',
-    desc: 'Meu processo é ágil. Após a aprovação do design, seu site estará online e pronto para vender em uma semana.',
-    icon: '🚀',
+    title: 'A/B Testing & CRO Built-In',
+    desc: 'I implement A/B/multivariate testing from day one. Your landing page evolves based on data, not guesswork. Proven: 2.4% uplift in activation rates.',
+    Icon: FaRocket,
   },
   {
-    title: 'Risco Zero: 100% Satisfeito',
-    desc: 'Meu compromisso é total. Farei todos os ajustes necessários até o projeto ficar exatamente como você imaginou.',
-    icon: '✅',
+    title: 'Optimized for Paid Traffic',
+    desc: 'Built specifically for Meta Ads, Google Ads, and LinkedIn Ads. Fast loading, Core Web Vitals optimized, and conversion-focused design.',
+    Icon: FaCheckCircle,
   },
   {
-    title: 'Suporte Humano (Sem Robôs)',
-    desc: 'Acabou a enrolação. Você fala direto comigo, o criador do seu projeto, e tem respostas rápidas.',
-    icon: '🤝',
+    title: 'End-to-End Growth Stack',
+    desc: 'I set up Analytics, Pixels, Hotjar, and funnel tracking. You get complete visibility into your customer journey and conversion bottlenecks.',
+    Icon: FaHandshake,
   },
 ];
 
 const secondary = [
   {
-    title: 'Performance Absurda',
-    desc: 'Carregamento instantâneo. Você nunca perde uma venda por lentidão.',
-    icon: '⚡',
+    title: 'Core Web Vitals Optimized',
+    desc: 'Lightning-fast loading. Core Web Vitals optimized for better ad performance and lower CPA.',
+    Icon: FaBolt,
   },
   {
-    title: 'Design Exclusivo',
-    desc: 'Visual moderno e 100% alinhado à identidade visual do seu negócio.',
-    icon: '🎨',
+    title: 'Brand-Consistent Design',
+    desc: 'Visual identity aligned with your brand. Component Library approach ensures consistency across all touchpoints.',
+    Icon: FaPalette,
   },
   {
-    title: 'Perfeito em Qualquer Tela',
-    desc: 'Totalmente responsivo, do celular ao desktop.',
-    icon: '📱',
+    title: 'Mobile-First Responsive',
+    desc: 'Perfect on any device. Most paid traffic converts on mobile—I optimize for that first.',
+    Icon: FaMobileAlt,
   },
   {
-    title: 'Pronto para Marketing',
-    desc: 'Integrado com WhatsApp, Instagram, Analytics e o que mais você precisar.',
-    icon: '🔗',
+    title: 'Full Analytics Integration',
+    desc: 'Google Analytics, Mixpanel, Hotjar, and conversion pixels pre-configured. Track everything from click to conversion.',
+    Icon: FaLink,
   },
 ];
 
-const SalesBenefits = () => (
-  <section className="bg-white py-14 px-4">
-    <h2 className="text-3xl font-black text-blue-800 text-center mb-4">🚀 Seu Projeto Nivelado Acima da Concorrência</h2>
-    <p className="max-w-2xl mx-auto text-center text-lg text-blue-700 mb-10 font-semibold">
-      Aqui, mostramos os <span className="underline">4 pilares</span> que transformam seu site em uma máquina de vendas real, não apenas promessas.
-    </p>
-    <div className="max-w-5xl mx-auto grid gap-8 md:grid-cols-4 mb-10">
-      {pillars.map((item, idx) => (
+const SalesBenefits = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  return (
+    <section className="bg-gradient-to-b from-white via-slate-50 to-white py-20 px-4 relative overflow-hidden">
+      {/* Decorative background */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-orange-100/30 to-red-100/30 rounded-full blur-3xl -z-0" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
-          key={item.title}
-          className="bg-blue-50 rounded-2xl shadow-md p-7 text-center border-2 border-blue-200 hover:scale-105 transition flex flex-col items-center"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.55, delay: 0.13 * idx }}
+          ref={ref}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          variants={{
+            visible: { transition: { staggerChildren: 0.1 } },
+          }}
         >
-          <div className="text-4xl mb-3 select-none">{item.icon}</div>
-          <h3 className="text-xl font-bold text-blue-800 mb-2">{item.title}</h3>
-          <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+          <motion.h2
+            className="text-4xl md:text-5xl font-black text-slate-900 text-center mb-4"
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            🚀 Landing Pages{' '}
+            <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+              Built for Paid Traffic
+            </span>
+          </motion.h2>
+          <motion.p
+            className="max-w-3xl mx-auto text-center text-lg text-slate-700 mb-12 font-semibold"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            I combine <strong>Behavioral Psychology</strong> (Cialdini, Fogg, Kahneman), <strong>A/B Testing</strong>, and <strong>Next.js/React</strong> to create landing pages that convert. Here are the <span className="underline decoration-2">4 pillars</span> that make the difference.
+          </motion.p>
+          <div className="max-w-6xl mx-auto grid gap-8 md:grid-cols-4 mb-16">
+            {pillars.map((item) => (
+              <motion.div
+                key={item.title}
+                className="bg-white/80 backdrop-blur-md rounded-3xl shadow-xl p-8 text-center border border-white/50 hover:shadow-2xl transition-all flex flex-col items-center"
+                variants={{
+                  hidden: { opacity: 0, y: 40, scale: 0.9 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    transition: { type: 'spring', stiffness: 100 },
+                  },
+                }}
+                whileHover={{ y: -8, scale: 1.05 }}
+              >
+                <div className="mb-4 p-4 rounded-2xl bg-gradient-to-br from-blue-100 to-indigo-100">
+                  <item.Icon className="text-blue-600" size={32} />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+          <motion.div
+            className="max-w-4xl mx-auto"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+            }}
+          >
+            <motion.h4
+              className="text-xl text-slate-900 font-bold mb-6 text-center"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+            >
+              And of course, every solution includes:
+            </motion.h4>
+            <ul className="grid sm:grid-cols-2 gap-5">
+              {secondary.map((item) => (
+                <motion.li
+                  key={item.title}
+                  className="flex items-start gap-4 bg-white/80 backdrop-blur-md rounded-2xl shadow-lg p-6 border border-white/50 hover:shadow-xl transition-all"
+                  variants={{
+                    hidden: { opacity: 0, x: -20 },
+                    visible: {
+                      opacity: 1,
+                      x: 0,
+                      transition: { type: 'spring', stiffness: 100 },
+                    },
+                  }}
+                  whileHover={{ x: 5 }}
+                >
+                  <div className="p-2 rounded-lg bg-gradient-to-br from-blue-100 to-indigo-100 mt-1">
+                    <item.Icon className="text-blue-600" size={20} />
+                  </div>
+                  <div>
+                    <span className="font-bold text-slate-900 block mb-1">{item.title}</span>
+                    <span className="block text-slate-600 text-sm">{item.desc}</span>
+                  </div>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
         </motion.div>
-      ))}
-    </div>
-    <div className="max-w-3xl mx-auto mt-12">
-      <h4 className="text-lg text-blue-900 font-semibold mb-4 text-center">E claro, toda solução inclui:</h4>
-      <ul className="grid sm:grid-cols-2 gap-5">
-        {secondary.map((item, i) => (
-          <li key={item.title} className="flex items-start gap-4 bg-blue-50 rounded-xl shadow p-5 border border-blue-100">
-            <span className="text-xl mt-1 select-none">{item.icon}</span>
-            <div>
-              <span className="font-bold text-blue-800 block">{item.title}</span>
-              <span className="block text-gray-500 text-sm">{item.desc}</span>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-);
+      </div>
+    </section>
+  );
+};
 
 export default SalesBenefits;
 
