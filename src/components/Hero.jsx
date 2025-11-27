@@ -131,7 +131,7 @@ const Hero = () => {
         <motion.div className="relative z-10">
           <motion.img
             className="w-36 h-36 rounded-3xl border-4 border-white/30 shadow-2xl object-cover object-center relative z-10"
-            src="/victor1.JPG"
+            src="/victor2.jpeg"
             alt="Victor Mazoni"
             loading="lazy"
             decoding="async"

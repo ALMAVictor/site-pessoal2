@@ -41,7 +41,7 @@ const About = () => {
           >
             <div className="relative group">
               <motion.img
-                src="/victor1.JPG"
+                src="/victor4.jpeg"
                 alt="Victor Mazoni - Professional Photo"
                 className="w-56 h-80 md:w-72 md:h-96 rounded-3xl object-cover shadow-2xl border-4 border-white/50"
                 loading="lazy"
