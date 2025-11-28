@@ -472,5 +472,71 @@ Este arquivo documenta todas as decisões de design, padrões estabelecidos e mu
 
 ---
 
-*Última atualização: Modal ajustado para evitar corte no topo no desktop (pt-28 = 7rem no desktop, max-h-[calc(100vh-10rem)]). Hero da homepage com padding horizontal e texto responsivo. Mobile mantido perfeito como estava.*
+### Problema 5: Modal na Homepage redirecionando para /projects
+**Sintoma**: Ao clicar em um projeto na seção "Featured Projects" da homepage, o usuário era redirecionado para `/projects?project=...` ao invés de abrir o modal diretamente na homepage
+**Causa**: O componente `ProjectCard` na homepage estava usando `<Link to={`/projects?project=${project.id}`}>` que causava redirecionamento
+**Solução**:
+- Removido o `Link` do `ProjectCard` na homepage
+- Adicionado estado para controlar modal: `selectedProject` e `isModalOpen`
+- Criado handlers: `handleOpenModal(project)` e `handleCloseModal()`
+- Adicionado componente `ProjectModal` completo no `Projects.jsx` (mesma estrutura do `ProjectsPage.jsx`)
+- Card agora usa `onClick={() => handleOpenModal(project)}` ao invés de `Link`
+- Botão "View All Projects" continua redirecionando para `/projects` (comportamento correto)
+
+### Problema 6: Modal na Homepage cortando no topo no desktop
+**Sintoma**: Modal na homepage apresentava o mesmo problema de corte no topo no desktop
+**Causa**: Mesmo problema de padding-top insuficiente que ocorreu no `ProjectsPage.jsx`
+**Solução (Iteração 1)**:
+- Aplicada a mesma correção do `ProjectsPage.jsx`
+- Padding-top no desktop: `pt-28` (7rem) inicialmente
+- Padding-bottom mantido: `pb-12` (3rem)
+- Max-height ajustado: `max-h-[calc(100vh-10rem)]` no desktop (considera 7rem top + 3rem bottom)
+- **Resultado**: Ainda estava cortando
+
+**Solução (Iteração 2 - Final)**:
+- Padding-top aumentado no desktop: `pt-32` (8rem) para evitar corte
+- Padding-bottom mantido: `pb-12` (3rem)
+- Max-height ajustado: `max-h-[calc(100vh-11rem)]` no desktop (considera 8rem top + 3rem bottom)
+- Mobile mantido: `py-6` e `max-h-[calc(100vh-3rem)]` (estava perfeito)
+
+### Configuração Final do Modal na Homepage (Desktop) - FUNCIONANDO PERFEITAMENTE
+```jsx
+// Container externo
+// Mobile: py-6 (padding igual top/bottom)
+// Desktop: pt-80 pb-12 (padding-top = 20rem APENAS para ajustar a POSIÇÃO, não altera tamanho)
+// IMPORTANTE: Para descer/subir o modal, alterar APENAS este padding-top, NUNCA o max-height
+<div className="min-h-screen flex items-start md:items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 py-6 pt-6 md:pt-80 md:pb-12">
+
+// Modal box
+// IMPORTANTE: max-height MANTIDO - NÃO alterar o tamanho, apenas a posição via padding-top do container
+// Mobile: max-h-[calc(100vh-3rem)] (considera py-6)
+// Desktop: max-h-[calc(100vh-10rem)] (MANTIDO - NUNCA alterar)
+<motion.div className="w-full max-w-5xl ... max-h-[calc(100vh-3rem)] md:max-h-[calc(100vh-10rem)] flex flex-col overflow-hidden my-0 md:my-auto">
+```
+
+### Regra de Ouro - Ajuste de Posição do Modal
+**NUNCA alterar o `max-height` do modal para ajustar a posição!**
+- ✅ **CORRETO**: Alterar apenas o `padding-top` do container (ex: `pt-80`, `pt-96`, etc.)
+- ❌ **ERRADO**: Alterar o `max-height` do modal (ex: `calc(100vh-10rem)`, `calc(100vh-11rem)`, etc.)
+- **Razão**: O `max-height` controla o TAMANHO do modal, não a POSIÇÃO. A posição é controlada pelo `padding-top` do container pai.
+
+### Problema 7: Modal na Homepage ainda cortando após aplicar estrutura do ProjectsPage
+**Sintoma**: Após aplicar a estrutura exata do modal do `ProjectsPage.jsx`, o modal na homepage ainda estava cortando no topo
+**Causa**: Mesmo com a estrutura idêntica, o padding-top de `pt-28` (7rem) não era suficiente para evitar o corte
+**Solução (Iteração 1)**:
+- Padding-top aumentado: `pt-28` → `pt-32` (8rem) no desktop
+- Max-height ajustado: `max-h-[calc(100vh-10rem)]` → `max-h-[calc(100vh-11rem)]` no desktop
+- **Resultado**: Ainda cortando
+
+**Solução (Iteração 2 - IMPORTANTE)**:
+- **ERRO**: Estava alterando o `max-height` do modal quando o usuário só queria mudar a POSIÇÃO
+- **CORREÇÃO**: Aumentar APENAS o `padding-top` para descer a posição, SEM alterar o `max-height`
+- **Tentativas**: pt-96 (24rem) desceu muito → pt-80 (20rem) ficou perfeito
+- **Max-height MANTIDO**: `max-h-[calc(100vh-10rem)]` no desktop (NÃO alterar o tamanho, só a posição)
+- Mobile mantido: `py-6` e `max-h-[calc(100vh-3rem)]` (sem alterações)
+- **Lição aprendida**: Para descer/subir o modal, alterar APENAS o `padding-top` do container, NUNCA o `max-height` do modal
+
+---
+
+*Última atualização: Modal na homepage ajustado para abrir diretamente (sem redirecionar). Estrutura idêntica ao ProjectsPage.jsx aplicada. Configuração final: padding-top pt-80 (20rem) no desktop para posicionar o modal corretamente. IMPORTANTE: Para ajustar a posição, alterar APENAS o padding-top do container, NUNCA o max-height do modal (mantido em calc(100vh-10rem)). Mobile mantido perfeito como estava.*
 
