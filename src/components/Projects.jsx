@@ -1,3 +1,10 @@
+// ============================================
+// PROJECTS.JSX - Seção Featured Projects (Homepage)
+// ============================================
+// Exibe projetos em destaque na homepage
+// Carrossel mobile com swipe gesture
+// Grid desktop com animações stagger
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
@@ -5,7 +12,11 @@ import { Link } from 'react-router-dom';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { projectsData, getMarketInfo } from '../data/projectsData';
 
-// Market Badge Component
+/**
+ * Componente: Market Badge
+ * Exibe badge do mercado (Brasil, EUA, etc.) com bandeira
+ * @param {string} market - ID do mercado (ex: 'br', 'us')
+ */
 const MarketBadge = ({ market }) => {
   const marketInfo = getMarketInfo(market);
   if (!marketInfo || marketInfo.id === 'all') return null;
@@ -18,15 +29,24 @@ const MarketBadge = ({ market }) => {
   );
 };
 
-// Get featured projects for home page
+// Filtra apenas projetos marcados como featured
 const featuredProjects = projectsData.filter(p => p.featured);
 
+/**
+ * Componente: Projects (Homepage)
+ * Seção de projetos em destaque
+ * Carrossel mobile + Grid desktop
+ */
 const Projects = () => {
+  // Ref para animação de entrada quando visível
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
+  
+  // Estados: Carrossel mobile
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
+  // Efeito: Detecta se está em mobile
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -36,14 +56,26 @@ const Projects = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  /**
+   * Navegação do carrossel: Próximo slide
+   * Volta para o início quando chega no final
+   */
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % featuredProjects.length);
   };
 
+  /**
+   * Navegação do carrossel: Slide anterior
+   * Vai para o final quando está no início
+   */
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + featuredProjects.length) % featuredProjects.length);
   };
 
+  /**
+   * Navegação do carrossel: Ir para slide específico
+   * Usado pelos dots indicadores
+   */
   const goToSlide = (index) => {
     setCurrentIndex(index);
   };
@@ -131,18 +163,25 @@ const Projects = () => {
     </Link>
   );
 
+  // ============================================
+  // RENDER
+  // ============================================
   return (
     <section id="projects" className="py-20 md:py-32 bg-slate-900/95 backdrop-blur-xl relative overflow-hidden">
-      {/* Subtle gradient overlay - matching header */}
+      {/* ============================================
+          BACKGROUND DECORATIVO
+          Gradientes e orbs para efeito premium
+          ============================================ */}
+      {/* Overlay de gradiente sutil */}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-slate-900/95 to-indigo-900/20 pointer-events-none" />
       
-      {/* Premium Decorative Background Elements - Static */}
+      {/* Elementos decorativos de fundo - Orbs e grid pattern */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Large gradient orb - top right - Static */}
+        {/* Orb grande - canto superior direito */}
         <div className="absolute -top-32 -right-32 w-[600px] md:w-[800px] h-[600px] md:h-[800px] bg-gradient-to-bl from-blue-500/20 md:from-blue-500/30 via-indigo-500/15 md:via-indigo-500/20 to-purple-500/10 md:to-purple-500/15 rounded-full blur-3xl" />
-        {/* Medium gradient orb - bottom left - Static */}
+        {/* Orb médio - canto inferior esquerdo */}
         <div className="absolute -bottom-32 -left-32 w-[500px] md:w-[700px] h-[500px] md:h-[700px] bg-gradient-to-tr from-indigo-500/15 md:from-indigo-500/25 via-purple-500/12 md:via-purple-500/20 to-blue-500/10 md:to-blue-500/15 rounded-full blur-3xl" />
-        {/* Subtle grid pattern overlay - more refined */}
+        {/* Padrão de grid sutil */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(99,102,241,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(99,102,241,0.05)_1px,transparent_1px)] bg-[size:32px_32px] opacity-30 md:opacity-50" />
       </div>
 

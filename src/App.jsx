@@ -1,3 +1,9 @@
+// ============================================
+// APP.JSX - Componente Principal da Aplicação
+// ============================================
+// Gerencia rotas, layout e SEO de todas as páginas
+// SPA (Single Page Application) com React Router
+
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -17,7 +23,19 @@ import ContactPage from './pages/ContactPage';
 import { useEffect } from 'react';
 import { setSEOMetaTags } from './utils/seo';
 
+/**
+ * Componente: Layout
+ * Wrapper comum para todas as páginas
+ * Inclui Header, conteúdo principal e Footer
+ * Gerencia SEO dinâmico baseado nas props
+ * @param {ReactNode} children - Conteúdo da página
+ * @param {string} seoTitle - Título para SEO
+ * @param {string} seoDescription - Descrição para SEO
+ * @param {string} seoImage - Imagem para Open Graph
+ * @param {string} seoUrl - URL canônica
+ */
 function Layout({ children, seoTitle, seoDescription, seoImage, seoUrl }) {
+  // Atualiza meta tags SEO quando as props mudam
   useEffect(() => {
     setSEOMetaTags({
       title: seoTitle,
@@ -36,14 +54,24 @@ function Layout({ children, seoTitle, seoDescription, seoImage, seoUrl }) {
   );
 }
 
+/**
+ * Componente Principal: App
+ * Define todas as rotas da aplicação
+ * Suporta redirecionamento legacy para /?vendas
+ */
 function App() {
   const { pathname, search } = useLocation();
-  // Suporte legacy para /?vendas
+  
+  // Suporte legacy: Redireciona /?vendas para /vendas
   if (pathname === '/' && search.includes('vendas')) {
     return <Navigate to="/vendas" replace />;
   }
   return (
     <Routes>
+      {/* ============================================
+          ROTA: Homepage (/)
+          Seção principal com todas as seções
+          ============================================ */}
       <Route
         path="/"
         element={
@@ -57,10 +85,20 @@ function App() {
           </Layout>
         }
       />
+      
+      {/* ============================================
+          ROTA: Projects (/projects)
+          Página completa de projetos com filtros
+          ============================================ */}
       <Route
         path="/projects"
         element={<Layout seoTitle="Featured Projects | Victor Mazoni - Hybrid Growth Engineer"><ProjectsPage /></Layout>}
       />
+      
+      {/* ============================================
+          ROTA: Blog (/blog)
+          Blog com artigos e vídeos do YouTube
+          ============================================ */}
       <Route
         path="/blog"
         element={
@@ -73,22 +111,47 @@ function App() {
           </Layout>
         }
       />
+      
+      {/* ============================================
+          ROTA: Vendas (/vendas)
+          Página de vendas de landing pages
+          ============================================ */}
       <Route
         path="/vendas"
         element={<Layout seoTitle="High-Converting Landing Pages for Paid Traffic | Victor Mazoni"><Sales /></Layout>}
       />
+      
+      {/* ============================================
+          ROTA: Services (/services)
+          Página de serviços oferecidos
+          ============================================ */}
       <Route
         path="/services"
         element={<Layout seoTitle="Complete Growth Services | Victor Mazoni - Hybrid Growth Engineer"><Services /></Layout>}
       />
+      
+      {/* ============================================
+          ROTA: About (/about)
+          Página sobre Victor Mazoni
+          ============================================ */}
       <Route
         path="/about"
         element={<Layout seoTitle="About Victor Mazoni | Hybrid Growth Engineer - Psychology & Code"><AboutPage /></Layout>}
       />
+      
+      {/* ============================================
+          ROTA: Skills (/skills)
+          Página de habilidades e expertise
+          ============================================ */}
       <Route
         path="/skills"
         element={<Layout seoTitle="Skills & Expertise | Victor Mazoni - Technical & Strategic Arsenal"><SkillsPage /></Layout>}
       />
+      
+      {/* ============================================
+          ROTA: Contact (/contact)
+          Página de contato (LinkedIn)
+          ============================================ */}
       <Route
         path="/contact"
         element={
@@ -100,7 +163,11 @@ function App() {
           </Layout>
         }
       />
-      {/* Fallback */}
+      
+      {/* ============================================
+          ROTA: Fallback (404)
+          Página não encontrada
+          ============================================ */}
       <Route path="*" element={<Layout seoTitle="Página não encontrada | Victor Mazoni"><div className="h-64 flex flex-col items-center justify-center text-blue-700"><h1 className="text-3xl font-black">404</h1><p>Página não encontrada!</p></div></Layout>} />
     </Routes>
   );

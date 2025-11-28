@@ -1,4 +1,29 @@
-// Centralized project data with detailed information
+// ============================================
+// PROJECTSDATA.JS - Dados Centralizados dos Projetos
+// ============================================
+// Arquivo centralizado com todas as informações dos projetos
+// Inclui: descrições, tech stack, resultados, imagens, links
+
+/**
+ * Array de projetos
+ * Cada projeto contém:
+ * - id: Identificador único
+ * - title: Título do projeto
+ * - category: Categoria (landing, sites, ecommerce)
+ * - market: Mercado (br, us)
+ * - description: Descrição curta (usada nos cards)
+ * - fullDescription: Descrição completa (usada no modal)
+ * - challenge: Desafio do projeto
+ * - solution: Solução implementada
+ * - duration: Tempo de desenvolvimento
+ * - techStack: Array de tecnologias utilizadas
+ * - results: Resultados obtidos
+ * - image: Caminho da imagem
+ * - videoId: ID do vídeo do YouTube (opcional)
+ * - demo: URL do projeto ao vivo
+ * - github: URL do repositório (opcional)
+ * - featured: Se deve aparecer na homepage
+ */
 export const projectsData = [
   {
     id: 'gamers-code',
@@ -23,13 +48,13 @@ export const projectsData = [
     title: 'Scrambler 400x - Landing Page de Vendas',
     category: 'landing',
     market: 'br', // Brazilian market
-    description: 'Landing page de alta conversão desenvolvida para campanhas de tráfego pago no mercado brasileiro. Aplicação de princípios de psicologia comportamental do consumidor, copywriting persuasivo e otimização técnica para máxima performance.',
-    fullDescription: 'Landing page de vendas desenvolvida especificamente para o mercado brasileiro, otimizada para campanhas de tráfego pago (Meta Ads e Google Ads). A página foi construída aplicando princípios de psicologia comportamental do consumidor (Cialdini, Fogg, Kahneman) incluindo prova social, escassez, autoridade e gatilhos de persuasão. Implementada com Next.js/React para performance otimizada, design responsivo e experiência de usuário fluida. Copywriting adaptado para o público brasileiro com tom persuasivo e direto ao ponto.',
-    challenge: 'Criar uma landing page que converta em escala para campanhas de tráfego pago no mercado brasileiro, reduzindo CPA enquanto mantém altas taxas de conversão.',
-    solution: 'Desenvolvida landing page com Next.js/React aplicando princípios de psicologia comportamental do consumidor no design, copywriting otimizado para o público brasileiro, estrutura técnica otimizada para performance e integração completa com ferramentas de analytics para tracking de conversões.',
-    duration: '3 semanas',
+    description: 'Landing page de alta conversão desenvolvida para a Triumph de São José do Rio Preto, focada em tráfego pago para atrair clientes interessados na Scrambler 400x. UX completa pensada em vender a moto utilizando o branding oficial da marca Triumph.',
+    fullDescription: 'Landing page de vendas desenvolvida especificamente para a concessionária Triumph de São José do Rio Preto, com foco total em campanhas de tráfego pago (Meta Ads e Google Ads) para atrair e converter clientes interessados na Triumph Scrambler 400x. Toda a experiência do usuário (UX) foi estrategicamente pensada para vender a moto, desde o primeiro contato até a conversão, utilizando o branding oficial da marca Triumph para criar confiança e autoridade. A página foi construída aplicando princípios de psicologia comportamental do consumidor (Cialdini, Fogg, Kahneman) incluindo prova social, escassez, autoridade e gatilhos de persuasão específicos para o público brasileiro interessado em motocicletas premium. Implementada com Next.js/React para performance otimizada, design responsivo e experiência de usuário fluida que guia o visitante através de uma jornada de vendas cuidadosamente estruturada.',
+    challenge: 'Criar uma landing page que converta visitantes de tráfego pago em clientes interessados na Triumph Scrambler 400x para a concessionária de São José do Rio Preto, utilizando o branding oficial da marca e uma UX focada exclusivamente em vender a moto, reduzindo CPA enquanto mantém altas taxas de conversão.',
+    solution: 'Desenvolvida landing page com Next.js/React aplicando princípios de psicologia comportamental do consumidor no design e na jornada do usuário, copywriting otimizado para o público brasileiro interessado em motocicletas premium, estrutura técnica otimizada para performance em tráfego pago, integração completa com ferramentas de analytics para tracking de conversões, e uma experiência de usuário completa que utiliza o branding oficial da Triumph para criar confiança e guiar o visitante através de uma jornada de vendas estratégica desde o primeiro clique até a conversão.',
+    duration: '7 dias',
     techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Google Analytics', 'Meta Pixel', 'Hotjar', 'Vercel'],
-    results: 'Landing page otimizada para conversão com estrutura técnica de alta performance',
+    results: 'Landing page otimizada para conversão com estrutura técnica de alta performance, focada em vender a Triumph Scrambler 400x através de tráfego pago',
     image: '/img-portfolio-scrambler400x.jpeg',
     videoId: '', // YouTube video ID (if available)
     demo: 'https://scrambler-400x.vercel.app',
@@ -45,7 +70,7 @@ export const projectsData = [
     fullDescription: 'A collection of high-converting landing pages built specifically for Paid Traffic campaigns on Meta Ads and Google Ads. Each landing page was designed using consumer behavioral psychology principles (Cialdini, Fogg, Kahneman) including social proof, scarcity, and persuasion triggers. Implemented comprehensive A/B testing strategy to optimize conversion rates and reduce CPA.',
     challenge: 'Create landing pages that convert at scale for paid traffic campaigns, reducing CPA while maintaining high conversion rates.',
     solution: 'Developed Next.js/React landing pages with consumer behavioral psychology principles embedded in the design, comprehensive A/B testing infrastructure, and real-time analytics integration for continuous optimization.',
-    duration: '2-3 weeks per landing page',
+    duration: '7 days',
     techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'A/B Testing Tools', 'Google Analytics', 'Hotjar'],
     results: '12.5% increase in conversion rate, 22% reduction in CPA',
     image: 'https://placehold.co/1200x675/png?text=Landing+Pages',
@@ -74,6 +99,10 @@ export const projectsData = [
   },
 ];
 
+/**
+ * Categorias de projetos
+ * Usadas nos filtros da página de projetos
+ */
 export const categories = [
   { id: 'all', label: 'All Projects', icon: '📁' },
   { id: 'landing', label: 'Landing Pages', icon: '🚀' },
@@ -81,13 +110,22 @@ export const categories = [
   { id: 'ecommerce', label: 'E-commerce', icon: '🛒' },
 ];
 
+/**
+ * Mercados/Países
+ * Usados nos filtros e badges dos projetos
+ */
 export const markets = [
   { id: 'all', label: 'All Markets', flag: '🌍' },
   { id: 'br', label: 'Brazil', flag: '🇧🇷' },
   { id: 'us', label: 'United States', flag: '🇺🇸' },
 ];
 
-// Helper function to get market info
+/**
+ * Função auxiliar: Obter informações do mercado
+ * Retorna o objeto do mercado ou o primeiro (all) como fallback
+ * @param {string} market - ID do mercado (ex: 'br', 'us')
+ * @returns {Object} Objeto com informações do mercado
+ */
 export const getMarketInfo = (market) => {
   return markets.find(m => m.id === market) || markets[0];
 };

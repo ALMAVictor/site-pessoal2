@@ -1,8 +1,17 @@
+// ============================================
+// HEADER.JSX - Navegação Principal
+// ============================================
+// Header fixo com menu responsivo (mobile/desktop)
+// Inclui logo, links de navegação e menu hambúrguer
+
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
 import { FaBars, FaTimes } from 'react-icons/fa';
 
+/**
+ * Links de navegação
+ * special: true aplica estilo especial (gradiente) ao botão
+ */
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services', special: true },
@@ -13,7 +22,13 @@ const navLinks = [
   { label: 'Contact', href: '/contact' },
 ];
 
+/**
+ * Componente: Header
+ * Navegação fixa no topo da página
+ * Menu hambúrguer para mobile, links horizontais para desktop
+ */
 const Header = () => {
+  // Estado: Controla abertura/fechamento do menu mobile
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (

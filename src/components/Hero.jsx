@@ -1,12 +1,25 @@
+// ============================================
+// HERO.JSX - Seção Hero da Homepage
+// ============================================
+// Primeira seção visível do site
+// Comunica a proposta de valor principal com hierarquia tipográfica forte
+// CTAs consistentes com a identidade visual
+
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
 
-// Hero: First fold of the site. Communicates the main value proposition
-// quickly with strong typographic hierarchy and CTAs consistent with visual identity.
+/**
+ * Componente: Hero
+ * Seção principal da homepage
+ * Inclui título, descrição, CTAs e links sociais
+ * Animações otimizadas para mobile e desktop
+ */
 const Hero = () => {
+  // Estado: Detecta se está em mobile para otimizar animações
   const [isMobile, setIsMobile] = useState(false);
 
+  // Efeito: Detecta tamanho da tela e atualiza estado
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -39,7 +52,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="pt-32 pb-24 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-950 text-center relative overflow-hidden">
+    <section id="hero" className="pt-32 pb-24 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-950 text-center relative overflow-hidden">
     {/* Animated background gradient orbs - disabled on mobile for performance */}
     <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block">
       <motion.div
@@ -72,7 +85,7 @@ const Hero = () => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="relative z-10"
+      className="relative z-10 max-w-7xl mx-auto"
     >
       {/* Avatar with premium animated background */}
       <motion.div
@@ -158,13 +171,13 @@ const Hero = () => {
       {/* Main value proposition with premium typography */}
       <motion.p
         variants={itemVariants}
-        className="text-4xl md:text-6xl lg:text-7xl font-black mt-4 tracking-tight leading-tight"
+        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mt-4 tracking-tight leading-tight px-2 sm:px-4"
       >
-        <span className="bg-gradient-to-r from-white via-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent drop-shadow-lg">
+        <span className="bg-gradient-to-r from-white via-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent drop-shadow-lg break-words">
           Hybrid Growth Engineer
         </span>
         <br />
-        <span className="text-3xl md:text-5xl lg:text-6xl font-bold mt-2 block bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300 bg-clip-text text-transparent drop-shadow-md">
+        <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mt-2 block bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300 bg-clip-text text-transparent drop-shadow-md break-words">
           Where Consumer Behavioral Psychology Meets Code
         </span>
       </motion.p>

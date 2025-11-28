@@ -1,8 +1,23 @@
+// ============================================
+// RESULTS.JSX - Seção de Resultados (Homepage)
+// ============================================
+// Exibe métricas e resultados obtidos
+// Cards com ícones e gradientes coloridos
+
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { FaChartLine, FaArrowDown, FaUsers, FaRocket } from 'react-icons/fa';
 
+/**
+ * Array de resultados/métricas
+ * Cada resultado contém:
+ * - metric: Valor numérico da métrica
+ * - label: Título da métrica
+ * - desc: Descrição detalhada
+ * - Icon: Componente de ícone
+ * - color: Gradiente de cores
+ */
 const results = [
   {
     metric: '12.5%',

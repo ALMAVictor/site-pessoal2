@@ -1,6 +1,17 @@
+// ============================================
+// FOOTER.JSX - Rodapé do Site
+// ============================================
+// Rodapé com branding, navegação rápida, links sociais e copyright
+// Presente em todas as páginas através do Layout
+
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
 
+/**
+ * Componente: Footer
+ * Rodapé fixo com informações e links
+ * Grid responsivo: 1 coluna mobile, 2 tablet, 4 desktop
+ */
 const Footer = () => (
   <footer className="mt-auto bg-gradient-to-b from-slate-900 via-blue-900 to-slate-950 text-white/90 relative overflow-hidden">
     {/* Decorative background */}

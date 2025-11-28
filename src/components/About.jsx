@@ -1,12 +1,23 @@
+// ============================================
+// ABOUT.JSX - Seção About (Homepage)
+// ============================================
+// Seção de autoridade e posicionamento
+// Layout de duas colunas (imagem + texto) para melhor legibilidade
+// Cria conexão humana através da foto profissional
+
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 
-// About: Authority and positioning section. Two-column layout
-// (image + text) improves readability and creates human connection.
+/**
+ * Componente: About (Homepage)
+ * Seção sobre Victor Mazoni na homepage
+ * Layout responsivo: coluna única mobile, duas colunas desktop
+ */
 const About = () => {
+  // Ref para animação de entrada quando visível
   const ref = useRef(null);
-  // Reduced margin for faster trigger on mobile
+  // Margin reduzida para trigger mais rápido no mobile
   const isInView = useInView(ref, { once: true, margin: '-50px' });
 
   return (

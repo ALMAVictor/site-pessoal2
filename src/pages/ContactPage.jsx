@@ -1,8 +1,19 @@
+// ============================================
+// CONTACTPAGE.JSX - Página de Contato
+// ============================================
+// Página dedicada de contato
+// Focada em direcionar para LinkedIn (sem formulário de email)
+
 import ContactHero from '../components/contact/ContactHero';
 import ContactInfo from '../components/contact/ContactInfo';
 import ContactForm from '../components/contact/ContactForm';
 import ContactCTA from '../components/contact/ContactCTA';
 
+/**
+ * Componente: ContactPage
+ * Página completa de contato
+ * Layout: Hero + Info + Form (LinkedIn CTA) + CTA
+ */
 const ContactPage = () => (
   <div className="min-h-screen">
     <ContactHero />

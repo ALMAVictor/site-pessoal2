@@ -1,13 +1,29 @@
+// ============================================
+// SKILLS.JSX - Seção de Skills (Homepage)
+// ============================================
+// Exibe habilidades técnicas e estratégicas
+// Cards com lista de skills e ícones de check
+
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 
+/**
+ * Componente: CheckIcon
+ * Ícone de check usado nas listas de skills
+ */
 const CheckIcon = () => (
   <FaCheckCircle className="text-blue-600 shrink-0 mt-1" size={18} />
 );
 
+/**
+ * Componente: Skills (Homepage)
+ * Seção de habilidades na homepage
+ * Grid responsivo com cards de skills
+ */
 const Skills = () => {
+  // Ref para animação de entrada quando visível
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
 

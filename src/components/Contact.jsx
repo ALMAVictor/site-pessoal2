@@ -1,9 +1,25 @@
+// ============================================
+// CONTACT.JSX - Seção de Contato (Homepage)
+// ============================================
+// Seção de contato na homepage
+// Focada em direcionar para LinkedIn
+
 import { motion } from 'framer-motion';
 import { FaLinkedin, FaArrowRight } from 'react-icons/fa';
 
+/**
+ * Componente: Contact (Homepage)
+ * Seção de contato que direciona para LinkedIn
+ * Não utiliza email - apenas LinkedIn
+ */
 const Contact = () => {
+  // URL do perfil do LinkedIn
   const linkedinUrl = 'https://www.linkedin.com/in/victor-mazoni-2596171b7/';
 
+  /**
+   * Handler: Clique no botão do LinkedIn
+   * Abre o perfil do LinkedIn em nova aba
+   */
   const handleLinkedInClick = () => {
     if (typeof window !== 'undefined') {
       window.open(linkedinUrl, '_blank', 'noopener');

@@ -1,10 +1,22 @@
+// ============================================
+// BLOG.JSX - Página do Blog
+// ============================================
+// Página completa do blog
+// Suporta apenas artigos e vídeos do YouTube (LinkedIn removido)
+
 import BlogHero from '../components/blog/BlogHero';
 import BlogHighlight from '../components/blog/BlogHighlight';
 import BlogFilters from '../components/blog/BlogFilters';
 import BlogGrid from '../components/blog/BlogGrid';
 import { useState } from 'react';
 
+/**
+ * Componente: Blog
+ * Página principal do blog
+ * Gerencia filtros e exibe posts e vídeos
+ */
 const Blog = () => {
+  // Estado: Filtro selecionado (all, blog, youtube)
   const [selected, setSelected] = useState('all');
 
   return (
