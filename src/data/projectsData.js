@@ -19,6 +19,24 @@ export const projectsData = [
     featured: true,
   },
   {
+    id: 'scrambler-400x',
+    title: 'Scrambler 400x - Landing Page de Vendas',
+    category: 'landing',
+    market: 'br', // Brazilian market
+    description: 'Landing page de alta conversão desenvolvida para campanhas de tráfego pago no mercado brasileiro. Aplicação de princípios de psicologia comportamental do consumidor, copywriting persuasivo e otimização técnica para máxima performance.',
+    fullDescription: 'Landing page de vendas desenvolvida especificamente para o mercado brasileiro, otimizada para campanhas de tráfego pago (Meta Ads e Google Ads). A página foi construída aplicando princípios de psicologia comportamental do consumidor (Cialdini, Fogg, Kahneman) incluindo prova social, escassez, autoridade e gatilhos de persuasão. Implementada com Next.js/React para performance otimizada, design responsivo e experiência de usuário fluida. Copywriting adaptado para o público brasileiro com tom persuasivo e direto ao ponto.',
+    challenge: 'Criar uma landing page que converta em escala para campanhas de tráfego pago no mercado brasileiro, reduzindo CPA enquanto mantém altas taxas de conversão.',
+    solution: 'Desenvolvida landing page com Next.js/React aplicando princípios de psicologia comportamental do consumidor no design, copywriting otimizado para o público brasileiro, estrutura técnica otimizada para performance e integração completa com ferramentas de analytics para tracking de conversões.',
+    duration: '3 semanas',
+    techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Google Analytics', 'Meta Pixel', 'Hotjar', 'Vercel'],
+    results: 'Landing page otimizada para conversão com estrutura técnica de alta performance',
+    image: '/img-portfolio-scrambler400x.jpeg',
+    videoId: '', // YouTube video ID (if available)
+    demo: 'https://scrambler-400x.vercel.app',
+    github: '#',
+    featured: true,
+  },
+  {
     id: 'landing-pages-v4',
     title: 'High-Performance Landing Pages',
     category: 'landing',

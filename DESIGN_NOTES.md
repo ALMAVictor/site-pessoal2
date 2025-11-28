@@ -181,5 +181,20 @@ Este arquivo documenta todas as decisões de design, padrões estabelecidos e mu
 
 ---
 
-*Última atualização: Página Projects - Design premium escuro aplicado com bordas saturadas*
+## 🚀 Projetos Adicionados
+
+### Scrambler 400x - Landing Page de Vendas
+- **ID**: `scrambler-400x`
+- **Categoria**: Landing Pages
+- **Mercado**: Brasil (BR)
+- **Tecnologias**: Next.js, React, TypeScript, Tailwind CSS, Google Analytics, Meta Pixel, Hotjar, Vercel
+- **Imagem**: `/img-portfolio-scrambler400x.jpeg`
+- **Demo**: https://scrambler-400x.vercel.app
+- **Descrição**: Landing page de alta conversão desenvolvida para campanhas de tráfego pago no mercado brasileiro. Aplicação de princípios de psicologia comportamental do consumidor, copywriting persuasivo e otimização técnica para máxima performance.
+- **Featured**: Sim
+- **Data de Adição**: 2024
+
+---
+
+*Última atualização: Projeto Scrambler 400x adicionado ao portfólio - Landing page brasileira otimizada para conversão*
 
